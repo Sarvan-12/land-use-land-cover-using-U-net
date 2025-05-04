@@ -1,0 +1,25 @@
+# Ignore virtual environment
+venv/
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+
+# Ignore Jupyter/IPython checkpoints (if using notebooks)
+.ipynb_checkpoints/
+
+# Ignore model files (if too large or regenerated)
+*.h5
+*.pkl
+
+# Ignore CSVs if you don't want to track results
+data/analysis_results/
+data/area_by_class.csv
+
+# Ignore system/IDE files
+.DS_Store
+.vscode/
+*.log
+
+# Ignore environment config
+.env

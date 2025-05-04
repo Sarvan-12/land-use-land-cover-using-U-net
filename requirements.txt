@@ -1,0 +1,12 @@
+torch==1.13.1
+torchvision==0.17.0
+Pillow==9.2.0
+matplotlib==3.6.3
+numpy==1.24.4
+pandas==1.5.3
+plotly==5.10.0
+flask==2.2.2
+tensorflow-intel==2.12.0
+scikit-learn==1.2.2
+opencv-python==4.7.0.72
+typing-extensions==4.5.0
