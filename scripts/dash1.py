@@ -22,10 +22,8 @@ def load_data():
 # Load the data
 df = load_data()
 
-# Columns for class IDs
+# Class columns and their mappings
 area_columns = ['11', '21', '22', '23', '24', '31', '41', '42', '43', '52', '71', '81', '82', '90', '95']
-
-# Map class IDs to descriptive names
 class_mapping = {
     '11': 'Water',
     '21': 'Developed, Open Space',
@@ -44,47 +42,45 @@ class_mapping = {
     '95': 'Emergent Herbaceous Wetlands',
 }
 
-# Convert the dataframe to long format for pie chart usage
+# Reshape for visualizations
 df_long = df.melt(
     id_vars=['Region', 'Year'], 
     value_vars=area_columns, 
     var_name='Class', 
     value_name='Area'
 )
-
-# Replace class IDs with descriptive names for better visualization
 df_long['Class'] = df_long['Class'].map(class_mapping)
 
-# Layout for the dashboard
+# Layout with styling hooks
 app.layout = html.Div([
     html.H1("Land Use Land Cover Dashboard", style={'textAlign': 'center'}),
-    
-    # Dropdowns for region and year selection
+
     html.Div([
         html.Label("Select Region:"),
         dcc.Dropdown(
             id='region-dropdown',
             options=[{'label': region, 'value': region} for region in df['Region'].unique()],
             value=df['Region'].unique()[0],
-            clearable=False
+            clearable=False,
+            className="dash-dropdown"
         ),
         html.Label("Select Year:"),
         dcc.Dropdown(
             id='year-dropdown',
             options=[{'label': year, 'value': year} for year in df['Year'].unique()],
             value=df['Year'].unique()[0],
-            clearable=False
+            clearable=False,
+            className="dash-dropdown"
         )
-    ], style={'width': '40%', 'margin': 'auto'}),
-    
-    # Graphs for pie chart and trend graph
+    ], id="dropdown-container", style={'width': '40%', 'margin': 'auto'}),
+
     html.Div([
-        dcc.Graph(id='pie-chart'),
-        dcc.Graph(id='trend-graph')
-    ])
+        html.Div(dcc.Graph(id='pie-chart'), className='graph-box'),
+        html.Div(dcc.Graph(id='trend-graph'), className='graph-box')
+    ], id='graphs-container')
 ])
 
-# Callback to update graphs based on selected region and year
+# Callbacks
 @app.callback(
     [Output('pie-chart', 'figure'),
      Output('trend-graph', 'figure')],
@@ -92,10 +88,8 @@ app.layout = html.Div([
      Input('year-dropdown', 'value')]
 )
 def update_graphs(selected_region, selected_year):
-    # Filter data for the selected region and year
     filtered_data = df_long[(df_long['Region'] == selected_region) & (df_long['Year'] == selected_year)]
-    
-    # Pie chart for land use distribution
+
     pie_chart = px.pie(
         filtered_data,
         names='Class',
@@ -103,8 +97,7 @@ def update_graphs(selected_region, selected_year):
         title=f"Land Use Distribution in {selected_region} ({selected_year})",
         labels={'Class': 'Land Class', 'Area': 'Area (sq. units)'}
     )
-    
-    # Filter data for trend graph (all years for the selected region)
+
     trend_data = df[df['Region'] == selected_region].sort_values(by='Year')
     trend_data_long = trend_data.melt(
         id_vars=['Region', 'Year'],
@@ -113,8 +106,7 @@ def update_graphs(selected_region, selected_year):
         value_name='Area'
     )
     trend_data_long['Class'] = trend_data_long['Class'].map(class_mapping)
-    
-    # Line graph for trend over time
+
     trend_graph = px.line(
         trend_data_long,
         x='Year',
@@ -123,9 +115,9 @@ def update_graphs(selected_region, selected_year):
         title=f"Land Use Trend Over Time in {selected_region}",
         labels={'Year': 'Year', 'Area': 'Area (sq. units)', 'Class': 'Land Class'}
     )
-    
+
     return pie_chart, trend_graph
 
-# Run the app
+# Run server
 if __name__ == "__main__":
     app.run_server(debug=True)

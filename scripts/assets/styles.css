@@ -1,0 +1,130 @@
+body {
+    background-color: #141414;
+    color: #ffffff;
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #e50914;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 48px;  /* Slightly smaller size for better balance */
+    font-weight: 700;  /* Bold text for emphasis */
+    letter-spacing: 2px;
+    padding-top: 20px;
+    
+    /* Enhanced text shadow for depth */
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+    
+    /* Smooth animation for fade-in and scaling */
+    animation: fadeInScale 1s ease-out forwards;
+}
+
+/* Keyframe animation for fade-in and scaling */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(30px);  /* Start smaller and lower */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);  /* End at normal size */
+    }
+}
+/* Dropdown Section */
+#dropdown-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    background-color: #1c1c1c;
+    padding: 20px;
+    border-radius: 12px;
+    width: 50%;
+    margin: 30px auto 80px auto; /* Increased bottom margin for spacing */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.dash-dropdown {
+    width: 100%;
+    background-color: #2c2c2c;
+    color: white;
+    border-radius: 6px;
+}
+
+/* Dropdown Fix & Styling */
+.Select-control {
+    background-color: #2c2c2c !important;
+    color: white !important;
+    border: none !important;
+    transition: border 0.3s ease;
+}
+
+.Select-value-label, .Select-value {
+    color: white !important;
+}
+
+.Select-menu-outer, .Select-menu {
+    background-color: #2c2c2c !important;
+    color: white !important;
+    border: none !important;
+}
+
+.Select-option {
+    background-color: #2c2c2c !important;
+    color: white !important;
+    padding: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.Select-option:hover {
+    background-color: #3a3a3a !important;
+    color: #e50914 !important;
+}
+
+.Select.is-focused .Select-control {
+    border-color: #e50914 !important;
+    box-shadow: 0 0 5px #e50914 !important;
+}
+
+/* Graph Layout */
+#graphs-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 30px 50px 30px;
+    margin-top: 40px; 
+}
+
+.graph-box {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    flex: 1;
+    min-width: 480px;
+    max-width: 48%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Animation for Graph Boxes */
+.graph-box:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 960px) {
+    #graphs-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .graph-box {
+        max-width: 90%;
+    }
+}
