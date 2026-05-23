@@ -6,7 +6,7 @@ It also includes a **dashboard** that shows how land use has changed over time.
 
 ---
 
-## 🔧 What This Project Does
+## <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;display:inline"><path d="M14.7 6.3l3 3M10.2 4.6l2.3 2.3-8.5 8.5c-.8.8-.8 2 0 2.8l2.1 2.1c.8.8 2 .8 2.8 0l8.5-8.5 2.3 2.3c.4.4 1 .4 1.4 0l.7-.7c.4-.4.4-1 0-1.4l-8-8c-.4-.4-1-.4-1.4 0l-.7.7c-.4.4-.4 1 0 1.4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> What This Project Does
 
 - **Satellite Image Segmentation**: Uses a U-Net model (TensorFlow/Keras) to classify land types.
 - **Change Analysis**: Analyzes pixel-wise distribution to track land-use changes over decades.
@@ -14,7 +14,7 @@ It also includes a **dashboard** that shows how land use has changed over time.
 
 ---
 
-## 📁 Project Structure
+## <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;display:inline"><path d="M3 7v13h18V7M3 7l9-5 9 5M7.5 10.6v.01M7.5 14.6v.01M12 12.6v.01M12 16.6v.01M16.5 10.6v.01M16.5 14.6v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Project Structure
 
 ```
 ├── data/                # Raw satellite imagery and processed CSV results
@@ -31,7 +31,7 @@ It also includes a **dashboard** that shows how land use has changed over time.
 
 ---
 
-## ▶️ How to Run
+## <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;display:inline"><polygon points="5 3 19 12 5 21 5 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg> How to Run
 
 ### 1. Environment Setup
 We recommend using a virtual environment (tested on Python 3.10 - 3.12).
@@ -74,18 +74,21 @@ Then open [http://127.0.0.1:8050](http://127.0.0.1:8050) in your browser.
 
 ---
 
-## 📊 Outputs
+## <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;display:inline"><path d="M3 3v18h18V3H3zm3 6h12M9 21V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Outputs
+
 - **`unet_best_model.h5`**: The weights of the trained segmentation model.
 - **`area_analysis1.csv`**: Data file containing area percentages per land class per year.
 - **Interactive Graphs**: Pie charts and trend lines showing environmental changes over time.
 
 ---
 
-## 📬 Contact
+## <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;display:inline"><rect x="2" y="4" width="20" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="6 8 12 13 18 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg> Contact
+
 Made by **Sarvan D Suvarna**  
 GitHub: [Sarvan-12](https://github.com/Sarvan-12)
 
 ---
 
-## 📄 License
+## <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;display:inline"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M8 2v4M16 2v4M4 10h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> License
+
 This project is under the **MIT License**.
