@@ -74,7 +74,7 @@ brutalist_color_map = {
 years = sorted(df['Year'].unique())
 min_year = min(years)
 max_year = max(years)
-year_marks = {int(y): {'label': str(y)} for y in years if y % 5 == 0 or y in (min_year, max_year)}
+year_marks = {int(y): {'label': str(y) if (y % 5 == 0 and y != 1995 and y != 2020) or y in (min_year, max_year) else ''} for y in years}
 
 # Layout
 app.layout = html.Div([
