@@ -152,13 +152,13 @@ app.layout = html.Div([
                 # Pie Chart Card
                 html.Div([
                     html.Div("Distribution Breakdown", className="brutalist-card-header cyan-header"),
-                    html.Div(dcc.Graph(id='pie-chart'), className="brutalist-card-content")
+                    html.Div(dcc.Graph(id='pie-chart', style={'height': '480px'}), className="brutalist-card-content", style={'padding': '0'})
                 ], className="brutalist-card graph-box"),
 
                 # Trend Card
                 html.Div([
                     html.Div("Temporal Change Trends", className="brutalist-card-header"),
-                    html.Div(dcc.Graph(id='trend-graph'), className="brutalist-card-content")
+                    html.Div(dcc.Graph(id='trend-graph', style={'height': '480px'}), className="brutalist-card-content", style={'padding': '0'})
                 ], className="brutalist-card graph-box")
             ], className="graphs-row")
         ])
