@@ -74,10 +74,10 @@ brutalist_color_map = {
 years = sorted(df['Year'].unique())
 min_year = min(years)
 max_year = max(years)
-# Only show min and max endpoint labels — everything else is clean
+# Only two endpoint marks — no intermediate dots/ticks at all
 year_marks = {
-    int(y): {'label': str(y) if y in (min_year, max_year) else ''}
-    for y in years
+    min_year: {'label': str(min_year)},
+    max_year: {'label': str(max_year)}
 }
 
 # Layout
@@ -128,9 +128,10 @@ app.layout = html.Div([
                                 id='year-slider',
                                 min=min_year,
                                 max=max_year,
-                                step=None,
+                                step=1,
                                 marks=year_marks,
-                                value=min_year
+                                value=min_year,
+                                tooltip={'always_visible': True, 'placement': 'top'}
                             )
                         ], className="slider-container")
                     ], className="control-group")
@@ -174,6 +175,8 @@ app.layout = html.Div([
      Input('year-slider', 'value')]
 )
 def update_dashboard(selected_region, selected_year):
+    # Snap slider integer to nearest valid year in the dataset
+    selected_year = min(years, key=lambda y: abs(y - selected_year))
     # Filter current snapshot
     filtered_data = df_long[(df_long['Region'] == selected_region) & (df_long['Year'] == selected_year)]
 
