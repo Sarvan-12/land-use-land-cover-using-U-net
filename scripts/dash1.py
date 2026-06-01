@@ -76,8 +76,8 @@ min_year = min(years)
 max_year = max(years)
 # Only two endpoint marks — no intermediate dots/ticks at all
 year_marks = {
-    min_year: {'label': str(min_year)},
-    max_year: {'label': str(max_year)}
+    int(min_year): {'label': str(min_year)},
+    int(max_year): {'label': str(max_year)}
 }
 
 # Layout
