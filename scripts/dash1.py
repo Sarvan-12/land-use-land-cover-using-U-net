@@ -74,10 +74,10 @@ brutalist_color_map = {
 years = sorted(df['Year'].unique())
 min_year = min(years)
 max_year = max(years)
-# Only mark min and max — no crowded labels, year shown live in display box
+# Only show min and max endpoint labels — everything else is clean
 year_marks = {
-    min_year: {'label': str(min_year)},
-    max_year: {'label': str(max_year)}
+    int(y): {'label': str(y) if y in (min_year, max_year) else ''}
+    for y in years
 }
 
 # Layout
@@ -108,10 +108,20 @@ app.layout = html.Div([
                     
                     html.Div([
                         html.Label("SELECT YEAR"),
-                        # Big live year display box
                         html.Div(
                             id='year-display',
-                            className='year-display-box'
+                            style={
+                                'fontFamily': "'IBM Plex Mono', monospace",
+                                'fontSize': '42px',
+                                'fontWeight': '700',
+                                'textAlign': 'center',
+                                'border': '3px solid #000',
+                                'boxShadow': '4px 4px 0px #000',
+                                'background': '#FFDD00',
+                                'padding': '10px 0',
+                                'marginBottom': '18px',
+                                'letterSpacing': '2px',
+                            }
                         ),
                         html.Div([
                             dcc.Slider(
@@ -120,8 +130,7 @@ app.layout = html.Div([
                                 max=max_year,
                                 step=None,
                                 marks=year_marks,
-                                value=min_year,
-                                tooltip={"placement": "bottom", "always_visible": False}
+                                value=min_year
                             )
                         ], className="slider-container")
                     ], className="control-group")
@@ -165,8 +174,6 @@ app.layout = html.Div([
      Input('year-slider', 'value')]
 )
 def update_dashboard(selected_region, selected_year):
-    # Format year display
-    year_display = str(int(selected_year))
     # Filter current snapshot
     filtered_data = df_long[(df_long['Region'] == selected_region) & (df_long['Year'] == selected_year)]
 
@@ -265,7 +272,7 @@ def update_dashboard(selected_region, selected_year):
         line=dict(width=3)
     )
 
-    return pie_chart, trend_graph, stats_cells, year_display
+    return pie_chart, trend_graph, stats_cells, str(selected_year)
 
 # Run server
 if __name__ == "__main__":
