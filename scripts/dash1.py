@@ -205,13 +205,13 @@ def update_dashboard(selected_region, selected_year):
     pie_chart.update_layout(
         paper_bgcolor='#FFFFFF',
         plot_bgcolor='#FFFFFF',
-        margin=dict(t=50, b=10, l=10, r=10),
+        margin=dict(t=50, b=120, l=10, r=10),
         font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
         title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
         legend=dict(
             orientation='h',
             yanchor='top',
-            y=-0.05,
+            y=-0.15,
             xanchor='center',
             x=0.5,
             font=dict(family="IBM Plex Mono, monospace", size=10, color="#000000"),
@@ -222,7 +222,7 @@ def update_dashboard(selected_region, selected_year):
     )
     pie_chart.update_traces(
         marker=dict(line=dict(color='#000000', width=2)),
-        textinfo='percent+label',
+        textinfo='percent',
         textposition='inside'
     )
 
