@@ -148,6 +148,22 @@ label {
     padding: 10px 5px 25px 5px;
 }
 
+/* Year Display Box — big live number above the slider */
+.year-display-box {
+    background-color: #000000;
+    color: #FFDD00;
+    border: 3px solid #000000;
+    box-shadow: 4px 4px 0px #FFDD00;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 48px;
+    text-align: center;
+    padding: 10px 0;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    user-select: none;
+}
+
 .rc-slider-track {
     background-color: #000000 !important;
     height: 8px !important;

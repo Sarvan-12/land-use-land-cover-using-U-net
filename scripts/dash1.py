@@ -74,7 +74,11 @@ brutalist_color_map = {
 years = sorted(df['Year'].unique())
 min_year = min(years)
 max_year = max(years)
-year_marks = {int(y): {'label': str(y) if (y % 5 == 0 and y != 1995 and y != 2020) or y in (min_year, max_year) else ''} for y in years}
+# Only mark min and max — no crowded labels, year shown live in display box
+year_marks = {
+    min_year: {'label': str(min_year)},
+    max_year: {'label': str(max_year)}
+}
 
 # Layout
 app.layout = html.Div([
@@ -104,6 +108,11 @@ app.layout = html.Div([
                     
                     html.Div([
                         html.Label("SELECT YEAR"),
+                        # Big live year display box
+                        html.Div(
+                            id='year-display',
+                            className='year-display-box'
+                        ),
                         html.Div([
                             dcc.Slider(
                                 id='year-slider',
@@ -111,7 +120,8 @@ app.layout = html.Div([
                                 max=max_year,
                                 step=None,
                                 marks=year_marks,
-                                value=min_year
+                                value=min_year,
+                                tooltip={"placement": "bottom", "always_visible": False}
                             )
                         ], className="slider-container")
                     ], className="control-group")
@@ -149,11 +159,14 @@ app.layout = html.Div([
 @app.callback(
     [Output('pie-chart', 'figure'),
      Output('trend-graph', 'figure'),
-     Output('stats-grid', 'children')],
+     Output('stats-grid', 'children'),
+     Output('year-display', 'children')],
     [Input('region-dropdown', 'value'),
      Input('year-slider', 'value')]
 )
 def update_dashboard(selected_region, selected_year):
+    # Format year display
+    year_display = str(int(selected_year))
     # Filter current snapshot
     filtered_data = df_long[(df_long['Region'] == selected_region) & (df_long['Year'] == selected_year)]
 
@@ -252,7 +265,7 @@ def update_dashboard(selected_region, selected_year):
         line=dict(width=3)
     )
 
-    return pie_chart, trend_graph, stats_cells
+    return pie_chart, trend_graph, stats_cells, year_display
 
 # Run server
 if __name__ == "__main__":
