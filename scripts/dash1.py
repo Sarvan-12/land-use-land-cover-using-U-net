@@ -88,9 +88,9 @@ app.layout = html.Div([
         html.Div("SATELLITE IMAGE ANALYSIS & CHANGE MONITORING (1994 - 2023)", className="dashboard-subtitle")
     ], className="dashboard-header"),
 
-    # Main Dashboard Area
+    # Main Dashboard Area: Controls (left) | Stats (right)
     html.Div([
-        # Left Grid: Controls
+        # Left: Controls
         html.Div([
             html.Div([
                 html.Div("Controls", className="brutalist-card-header yellow-header"),
@@ -139,30 +139,29 @@ app.layout = html.Div([
             ], className="brutalist-card")
         ]),
 
-        # Right Grid: Stats & Charts
+        # Right: Stats only
         html.Div([
-            # Dynamic stats cards
             html.Div([
                 html.H3("LAND TYPE AREA STATISTICS", style={'marginBottom': '15px', 'letterSpacing': '0.5px'}),
                 html.Div(id='stats-grid', className='stats-grid')
             ], className="stats-container"),
-
-            # Graphs Row
-            html.Div([
-                # Pie Chart Card
-                html.Div([
-                    html.Div("Distribution Breakdown", className="brutalist-card-header cyan-header"),
-                    html.Div(dcc.Graph(id='pie-chart', style={'height': '480px'}), className="brutalist-card-content", style={'padding': '0'})
-                ], className="brutalist-card graph-box"),
-
-                # Trend Card
-                html.Div([
-                    html.Div("Temporal Change Trends", className="brutalist-card-header"),
-                    html.Div(dcc.Graph(id='trend-graph', style={'height': '480px'}), className="brutalist-card-content", style={'padding': '0'})
-                ], className="brutalist-card graph-box")
-            ], className="graphs-row")
         ])
-    ], className="main-grid")
+    ], className="main-grid"),
+
+    # Full-width Charts Row — spans both columns
+    html.Div([
+        # Pie Chart Card
+        html.Div([
+            html.Div("Distribution Breakdown", className="brutalist-card-header cyan-header"),
+            html.Div(dcc.Graph(id='pie-chart', style={'height': '480px'}), className="brutalist-card-content", style={'padding': '0'})
+        ], className="brutalist-card graph-box"),
+
+        # Trend Card
+        html.Div([
+            html.Div("Temporal Change Trends", className="brutalist-card-header"),
+            html.Div(dcc.Graph(id='trend-graph', style={'height': '480px'}), className="brutalist-card-content", style={'padding': '0'})
+        ], className="brutalist-card graph-box")
+    ], className="graphs-row")
 ])
 
 # Callbacks
