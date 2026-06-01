@@ -206,10 +206,15 @@ def update_dashboard(selected_region, selected_year):
     pie_chart.update_layout(
         paper_bgcolor='#FFFFFF',
         plot_bgcolor='#FFFFFF',
-        margin=dict(t=50, b=20, l=20, r=20),
+        margin=dict(t=50, b=10, l=10, r=10),
         font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
         title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
         legend=dict(
+            orientation='h',
+            yanchor='top',
+            y=-0.05,
+            xanchor='center',
+            x=0.5,
             font=dict(family="IBM Plex Mono, monospace", size=10, color="#000000"),
             bgcolor='#FFFFFF',
             bordercolor='#000000',
