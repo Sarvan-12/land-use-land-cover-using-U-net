@@ -10,7 +10,7 @@ CSV_PATH = "data/analysis_results/area_analysis1.csv"
 
 # Create a Dash app
 app = dash.Dash(__name__)
-app.title = "Land Use Land Cover Dashboard"
+app.title = "LULC Classification Dashboard"
 
 # Read the CSV file
 def load_data():
@@ -51,53 +51,155 @@ df_long = df.melt(
 )
 df_long['Class'] = df_long['Class'].map(class_mapping)
 
-# Layout with styling hooks
+# Brutalist palette color mapping for all classes
+brutalist_color_map = {
+    'Water': '#00C2FF',                       # Cyan
+    'Developed, Open Space': '#FFA4A4',        # Light Red
+    'Developed, Low Intensity': '#FF7E7E',     # Medium-Light Red
+    'Developed, Medium Intensity': '#FF4D4D',  # Bold Red
+    'Developed, High Intensity': '#D01C1C',    # Dark Red
+    'Barren Land': '#FFDD00',                 # Yellow
+    'Deciduous Forest': '#2E7D32',             # Dark Green
+    'Evergreen Forest': '#1B5E20',             # Deep Forest Green
+    'Mixed Forest': '#4CAF50',                 # Mid Green
+    'Shrub/Scrub': '#81C784',                  # Light Green
+    'Grassland': '#C8E6C9',                    # Pale Green
+    'Pasture/Hay': '#FFF176',                  # Light Yellow
+    'Cultivated Crops': '#FBC02D',              # Crop Gold
+    'Woody Wetlands': '#B388FF',               # Purple/Lavender
+    'Emergent Herbaceous Wetlands': '#7C4DFF', # Deep Purple
+}
+
+# Setup years for Slider
+years = sorted(df['Year'].unique())
+min_year = min(years)
+max_year = max(years)
+year_marks = {int(y): {'label': str(y)} for y in years if y % 5 == 0 or y in (min_year, max_year)}
+
+# Layout
 app.layout = html.Div([
-    html.H1("Land Use Land Cover Dashboard", style={'textAlign': 'center'}),
-
+    # Newspaper Header
     html.Div([
-        html.Label("Select Region:"),
-        dcc.Dropdown(
-            id='region-dropdown',
-            options=[{'label': region, 'value': region} for region in df['Region'].unique()],
-            value=df['Region'].unique()[0],
-            clearable=False,
-            className="dash-dropdown"
-        ),
-        html.Label("Select Year:"),
-        dcc.Dropdown(
-            id='year-dropdown',
-            options=[{'label': year, 'value': year} for year in df['Year'].unique()],
-            value=df['Year'].unique()[0],
-            clearable=False,
-            className="dash-dropdown"
-        )
-    ], id="dropdown-container", style={'width': '40%', 'margin': 'auto'}),
+        html.H1("LAND USE LAND COVER"),
+        html.Div("SATELLITE IMAGE ANALYSIS & CHANGE MONITORING (1994 - 2023)", className="dashboard-subtitle")
+    ], className="dashboard-header"),
 
+    # Main Dashboard Area
     html.Div([
-        html.Div(dcc.Graph(id='pie-chart'), className='graph-box'),
-        html.Div(dcc.Graph(id='trend-graph'), className='graph-box')
-    ], id='graphs-container')
+        # Left Grid: Controls
+        html.Div([
+            html.Div([
+                html.Div("Controls", className="brutalist-card-header yellow-header"),
+                html.Div([
+                    html.Div([
+                        html.Label("SELECT REGION"),
+                        dcc.Dropdown(
+                            id='region-dropdown',
+                            options=[{'label': region.upper(), 'value': region} for region in df['Region'].unique()],
+                            value=df['Region'].unique()[0],
+                            clearable=False,
+                            className="dash-dropdown"
+                        )
+                    ], className="control-group"),
+                    
+                    html.Div([
+                        html.Label("SELECT YEAR"),
+                        html.Div([
+                            dcc.Slider(
+                                id='year-slider',
+                                min=min_year,
+                                max=max_year,
+                                step=None,
+                                marks=year_marks,
+                                value=min_year
+                            )
+                        ], className="slider-container")
+                    ], className="control-group")
+                ], className="brutalist-card-content")
+            ], className="brutalist-card")
+        ]),
+
+        # Right Grid: Stats & Charts
+        html.Div([
+            # Dynamic stats cards
+            html.Div([
+                html.H3("LAND TYPE AREA STATISTICS", style={'marginBottom': '15px', 'letterSpacing': '0.5px'}),
+                html.Div(id='stats-grid', className='stats-grid')
+            ], className="stats-container"),
+
+            # Graphs Row
+            html.Div([
+                # Pie Chart Card
+                html.Div([
+                    html.Div("Distribution Breakdown", className="brutalist-card-header cyan-header"),
+                    html.Div(dcc.Graph(id='pie-chart'), className="brutalist-card-content")
+                ], className="brutalist-card graph-box"),
+
+                # Trend Card
+                html.Div([
+                    html.Div("Temporal Change Trends", className="brutalist-card-header"),
+                    html.Div(dcc.Graph(id='trend-graph'), className="brutalist-card-content")
+                ], className="brutalist-card graph-box")
+            ], className="graphs-row")
+        ])
+    ], className="main-grid")
 ])
 
 # Callbacks
 @app.callback(
     [Output('pie-chart', 'figure'),
-     Output('trend-graph', 'figure')],
+     Output('trend-graph', 'figure'),
+     Output('stats-grid', 'children')],
     [Input('region-dropdown', 'value'),
-     Input('year-dropdown', 'value')]
+     Input('year-slider', 'value')]
 )
-def update_graphs(selected_region, selected_year):
+def update_dashboard(selected_region, selected_year):
+    # Filter current snapshot
     filtered_data = df_long[(df_long['Region'] == selected_region) & (df_long['Year'] == selected_year)]
 
+    # Generate Stats Cells
+    stats_cells = []
+    # Sort from largest area to smallest
+    sorted_stats = filtered_data.sort_values(by='Area', ascending=False)
+    for idx, row in sorted_stats.iterrows():
+        # format large numbers nicely
+        area_val = f"{row['Area']:,}"
+        stats_cells.append(
+            html.Div([
+                html.Div(row['Class'].upper(), className="stat-cell-title"),
+                html.Div(area_val, className="stat-cell-value")
+            ], className="stat-cell")
+        )
+
+    # Pie Chart
     pie_chart = px.pie(
         filtered_data,
         names='Class',
         values='Area',
-        title=f"Land Use Distribution in {selected_region} ({selected_year})",
-        labels={'Class': 'Land Class', 'Area': 'Area (sq. units)'}
+        title=f"DISTRIBUTION IN {selected_region.upper()} ({selected_year})",
+        color='Class',
+        color_discrete_map=brutalist_color_map
+    )
+    pie_chart.update_layout(
+        paper_bgcolor='#FFFFFF',
+        plot_bgcolor='#FFFFFF',
+        margin=dict(t=50, b=20, l=20, r=20),
+        font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
+        title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
+        legend=dict(
+            font=dict(family="IBM Plex Mono, monospace", size=10, color="#000000"),
+            bgcolor='#FFFFFF',
+            bordercolor='#000000',
+            borderwidth=2
+        )
+    )
+    pie_chart.update_traces(
+        marker=dict(line=dict(color='#000000', width=2)),
+        textinfo='percent+label',
+        textposition='inside'
     )
 
+    # Line Chart
     trend_data = df[df['Region'] == selected_region].sort_values(by='Year')
     trend_data_long = trend_data.melt(
         id_vars=['Region', 'Year'],
@@ -112,11 +214,45 @@ def update_graphs(selected_region, selected_year):
         x='Year',
         y='Area',
         color='Class',
-        title=f"Land Use Trend Over Time in {selected_region}",
-        labels={'Year': 'Year', 'Area': 'Area (sq. units)', 'Class': 'Land Class'}
+        title=f"LAND USE TRENDS OVER TIME IN {selected_region.upper()}",
+        color_discrete_map=brutalist_color_map
+    )
+    trend_graph.update_layout(
+        paper_bgcolor='#FFFFFF',
+        plot_bgcolor='#FFFFFF',
+        margin=dict(t=50, b=20, l=20, r=20),
+        font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
+        title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
+        legend=dict(
+            font=dict(family="IBM Plex Mono, monospace", size=10, color="#000000"),
+            bgcolor='#FFFFFF',
+            bordercolor='#000000',
+            borderwidth=2
+        ),
+        xaxis=dict(
+            showgrid=True,
+            gridcolor='#EAEAEA',
+            linecolor='#000000',
+            linewidth=2,
+            ticks='outside',
+            tickfont=dict(family="IBM Plex Mono, monospace", size=10),
+            title=dict(font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"))
+        ),
+        yaxis=dict(
+            showgrid=True,
+            gridcolor='#EAEAEA',
+            linecolor='#000000',
+            linewidth=2,
+            ticks='outside',
+            tickfont=dict(family="IBM Plex Mono, monospace", size=10),
+            title=dict(font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"))
+        )
+    )
+    trend_graph.update_traces(
+        line=dict(width=3)
     )
 
-    return pie_chart, trend_graph
+    return pie_chart, trend_graph, stats_cells
 
 # Run server
 if __name__ == "__main__":
