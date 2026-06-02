@@ -12,9 +12,13 @@ __pycache__/
 *.h5
 *.pkl
 
-# Ignore CSVs if you don't want to track results
+# Ignore heavy datasets (stored on Google Drive)
+data/raw/
+data/labels/
+data/processed/
+
+# Ignore local analysis results
 data/analysis_results/
-data/area_by_class.csv
 
 # Ignore system/IDE files
 .DS_Store

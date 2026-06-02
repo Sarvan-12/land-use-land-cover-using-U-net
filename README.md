@@ -46,26 +46,42 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-### 2. Preprocess Data
+### 2. Download Dataset
+The raw satellite imagery and label datasets are stored on Google Drive to keep the repository lightweight. 
+1. Download the dataset from [Google Drive Link (Placeholder)](#).
+2. Extract the downloaded folders so that your project structure looks like this:
+   ```
+   ├── data/
+   │   ├── raw/
+   │   │   ├── region_1/
+   │   │   ├── region_2/
+   │   │   └── region_3/
+   │   └── labels/
+   │       ├── region_1/
+   │       ├── region_2/
+   │       └── region_3/
+   ```
+
+### 3. Preprocess Data
 Prepare the raw TIFF images for the model.
 ```bash
 python scripts/preprocess.py
 ```
 
-### 3. Train the Model (Optional)
+### 4. Train the Model (Optional)
 If you want to re-train the U-Net model:
 ```bash
 python scripts/train_unet.py
 ```
 
-### 4. Segment and Analyze
+### 5. Segment and Analyze
 Run inference on images and generate the area analysis CSV.
 ```bash
 python scripts/segment_images.py
 python scripts/analyze.py
 ```
 
-### 5. Run the Dashboard
+### 6. Run the Dashboard
 Launch the interactive web visualization.
 ```bash
 python scripts/dash1.py
