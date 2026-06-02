@@ -48,7 +48,7 @@ pip install -r requirements.txt
 
 ### 2. Download Dataset
 The raw satellite imagery and label datasets are stored on Google Drive to keep the repository lightweight. 
-1. Download the dataset from [Google Drive Link (Placeholder)](#).
+1. Download the dataset from [Google Drive Dataset Link](https://drive.google.com/file/d/1LfEyZjlS-PTKYcVXcke7aGShE1NDWWzY/view?usp=drive_link).
 2. Extract the downloaded folders so that your project structure looks like this:
    ```
    ├── data/
