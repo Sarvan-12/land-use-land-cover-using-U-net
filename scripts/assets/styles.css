@@ -273,3 +273,27 @@ label {
     }
 }
 
+.custom-legend-card {
+    background-color: #FFFFFF;
+    border: 3px solid #000000;
+    box-shadow: 4px 4px 0px #000000;
+    padding: 15px;
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+@media screen and (max-width: 768px) {
+    .custom-legend-card {
+        margin: 15px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .custom-legend-card {
+        grid-template-columns: 1fr;
+    }
+}
+

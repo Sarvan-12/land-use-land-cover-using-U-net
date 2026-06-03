@@ -159,7 +159,10 @@ app.layout = html.Div([
         # Trend Card
         html.Div([
             html.Div("Temporal Change Trends", className="brutalist-card-header"),
-            html.Div(dcc.Graph(id='trend-graph', className="trend-graph"), className="brutalist-card-content", style={'padding': '0'})
+            html.Div([
+                dcc.Graph(id='trend-graph', className="trend-graph"),
+                html.Div(id='trend-legend-container', className="custom-legend-card")
+            ], className="brutalist-card-content", style={'padding': '0'})
         ], className="brutalist-card graph-box")
     ], className="graphs-row")
 ])
@@ -169,7 +172,8 @@ app.layout = html.Div([
     [Output('pie-chart', 'figure'),
      Output('trend-graph', 'figure'),
      Output('stats-grid', 'children'),
-     Output('year-display', 'children')],
+     Output('year-display', 'children'),
+     Output('trend-legend-container', 'children')],
     [Input('region-dropdown', 'value'),
      Input('year-slider', 'value')]
 )
@@ -246,22 +250,12 @@ def update_dashboard(selected_region, selected_year):
     )
 
     trend_graph.update_layout(
+        showlegend=False,
         paper_bgcolor='#FFFFFF',
         plot_bgcolor='#FFFFFF',
-        margin=dict(t=50, b=250, l=20, r=20),
+        margin=dict(t=50, b=40, l=20, r=20),
         font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
         title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
-        legend=dict(
-            orientation='h',
-            yanchor='top',
-            y=-0.3,
-            xanchor='center',
-            x=0.5,
-            font=dict(family="IBM Plex Mono, monospace", size=8, color="#000000"),
-            bgcolor='#FFFFFF',
-            bordercolor='#000000',
-            borderwidth=2
-        ),
         xaxis=dict(
             showgrid=True,
             gridcolor='#EAEAEA',
@@ -285,7 +279,30 @@ def update_dashboard(selected_region, selected_year):
         line=dict(width=3)
     )
 
-    return pie_chart, trend_graph, stats_cells, str(selected_year)
+    # Custom HTML Legend Items
+    legend_items = []
+    for label, color in brutalist_color_map.items():
+        legend_items.append(
+            html.Div([
+                html.Div(style={
+                    'width': '14px',
+                    'height': '14px',
+                    'backgroundColor': color,
+                    'border': '2px solid #000000',
+                    'marginRight': '10px',
+                    'flexShrink': '0'
+                }),
+                html.Span(label, style={
+                    'fontFamily': "'IBM Plex Mono', monospace",
+                    'fontSize': '12px',
+                    'fontWeight': '700',
+                    'color': '#000000',
+                    'textTransform': 'uppercase'
+                })
+            ], style={'display': 'flex', 'alignItems': 'center'})
+        )
+
+    return pie_chart, trend_graph, stats_cells, str(selected_year), legend_items
 
 # Run server
 if __name__ == "__main__":
