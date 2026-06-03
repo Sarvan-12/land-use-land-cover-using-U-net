@@ -106,21 +106,9 @@ Then open [http://127.0.0.1:8050](http://127.0.0.1:8050) in your browser.
 
 ---
 
-## ⭐ Support & Feedback
-
-If you find this project useful or interesting, please consider:
-* Giving this repository a **Star** ⭐️ at the top of the page.
-* Sharing feedback or contributing to improvements.
-
----
-
-## 🤝 Connect
-
-<p align="center">
-  <a href="https://www.linkedin.com/in/sarvan12/" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-Connect%20with%20me-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=111111" alt="LinkedIn" height="35" />
-  </a>
-</p>
+<div align="center">
+  <h3><img src="https://api.iconify.design/lucide/star.svg?color=%237850ff" width="22" height="22" align="absmiddle" /> If you like this project or find it helpful, please consider giving it a star!</h3>
+</div>
 
 ---
 
