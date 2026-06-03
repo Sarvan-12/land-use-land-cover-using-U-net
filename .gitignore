@@ -18,7 +18,8 @@ data/labels/
 data/processed/
 
 # Ignore local analysis results
-data/analysis_results/
+data/analysis_results/*
+!data/analysis_results/area_analysis1.csv
 
 # Ignore system/IDE files
 .DS_Store
