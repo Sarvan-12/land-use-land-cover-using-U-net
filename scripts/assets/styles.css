@@ -250,69 +250,24 @@ label {
     margin-bottom: 0px !important;
 }
 
-.pie-graph {
-    height: 480px;
-    width: 100%;
-}
-
 .trend-graph {
     height: 480px;
     width: 100%;
 }
 
 @media screen and (max-width: 768px) {
-    body {
-        padding: 15px;
-    }
-
-    .dashboard-header {
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-
-    .dashboard-header h1 {
-        font-size: 32px;
-    }
-
-    .dashboard-subtitle {
-        font-size: 13px;
-        letter-spacing: 1px;
-    }
-
-    .stats-container {
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
 
-    .stat-cell {
-        padding: 12px 8px;
-    }
-
-    .stat-cell-value {
-        font-size: 18px;
-    }
-
-    .pie-graph {
-        height: 500px !important;
-        width: 100% !important;
-    }
-
     .trend-graph {
-        height: 450px !important;
+        height: 500px !important;
         width: 100% !important;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .dashboard-header h1 {
-        font-size: 24px;
-    }
-
     .stats-grid {
         grid-template-columns: 1fr;
     }

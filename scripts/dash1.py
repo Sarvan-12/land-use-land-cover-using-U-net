@@ -156,7 +156,7 @@ app.layout = html.Div([
         # Pie Chart Card
         html.Div([
             html.Div("Distribution Breakdown", className="brutalist-card-header cyan-header"),
-            html.Div(dcc.Graph(id='pie-chart', className="pie-graph"), className="brutalist-card-content", style={'padding': '0'})
+            html.Div(dcc.Graph(id='pie-chart', style={'height': '480px'}), className="brutalist-card-content", style={'padding': '0'})
         ], className="brutalist-card graph-box"),
 
         # Trend Card
@@ -210,40 +210,23 @@ def update_dashboard(selected_region, selected_year, viewport_width):
         color_discrete_map=brutalist_color_map
     )
 
-    if is_mobile:
-        pie_margin = dict(t=50, b=220, l=10, r=10)
-        pie_legend = dict(
-            orientation='h',
-            yanchor='top',
-            y=-0.25,
-            xanchor='center',
-            x=0.5,
-            font=dict(family="IBM Plex Mono, monospace", size=8, color="#000000"),
-            bgcolor='#FFFFFF',
-            bordercolor='#000000',
-            borderwidth=2
-        )
-    else:
-        pie_margin = dict(t=50, b=120, l=10, r=10)
-        pie_legend = dict(
+    pie_chart.update_layout(
+        paper_bgcolor='#FFFFFF',
+        plot_bgcolor='#FFFFFF',
+        margin=dict(t=50, b=120, l=10, r=10),
+        font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
+        title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
+        legend=dict(
             orientation='h',
             yanchor='top',
             y=-0.15,
             xanchor='center',
             x=0.5,
-            font=dict(family="Space Grotesk, sans-serif", size=10, color="#000000"),
+            font=dict(family="IBM Plex Mono, monospace", size=10, color="#000000"),
             bgcolor='#FFFFFF',
             bordercolor='#000000',
             borderwidth=2
         )
-
-    pie_chart.update_layout(
-        paper_bgcolor='#FFFFFF',
-        plot_bgcolor='#FFFFFF',
-        margin=pie_margin,
-        font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
-        title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
-        legend=pie_legend
     )
     pie_chart.update_traces(
         marker=dict(line=dict(color='#000000', width=2)),
