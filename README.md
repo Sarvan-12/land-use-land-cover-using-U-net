@@ -109,6 +109,6 @@ Then open [http://127.0.0.1:8050](http://127.0.0.1:8050) in your browser.
 <div align="center">
   <h3>🌟 If you like this project or find it helpful, please consider starring the repository!</h3>
   <a href="https://github.com/Sarvan-12/land-use-land-cover-using-U-net" target="_blank">
-    <img src="https://img.shields.io/github/stars/Sarvan-12/land-use-land-cover-using-U-net?style=social" alt="Star Badge" height="30" />
+    <img src="https://img.shields.io/badge/⭐%20Star%20on-GitHub-FFDD00?style=for-the-badge&logo=github&logoColor=black&labelColor=111111" alt="Star Badge" height="35" />
   </a>
 </div>
