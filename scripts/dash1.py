@@ -82,6 +82,9 @@ year_marks = {
 
 # Layout
 app.layout = html.Div([
+    # Hidden input to track viewport width
+    dcc.Input(id='viewport-width-input', type='number', value=1200, style={'display': 'none'}),
+
     # Newspaper Header
     html.Div([
         html.H1("LAND USE LAND COVER"),
@@ -153,13 +156,13 @@ app.layout = html.Div([
         # Pie Chart Card
         html.Div([
             html.Div("Distribution Breakdown", className="brutalist-card-header cyan-header"),
-            html.Div(dcc.Graph(id='pie-chart', className="responsive-graph"), className="brutalist-card-content", style={'padding': '0'})
+            html.Div(dcc.Graph(id='pie-chart', className="pie-graph"), className="brutalist-card-content", style={'padding': '0'})
         ], className="brutalist-card graph-box"),
 
         # Trend Card
         html.Div([
             html.Div("Temporal Change Trends", className="brutalist-card-header"),
-            html.Div(dcc.Graph(id='trend-graph', className="responsive-graph"), className="brutalist-card-content", style={'padding': '0'})
+            html.Div(dcc.Graph(id='trend-graph', className="trend-graph"), className="brutalist-card-content", style={'padding': '0'})
         ], className="brutalist-card graph-box")
     ], className="graphs-row")
 ])
@@ -171,9 +174,10 @@ app.layout = html.Div([
      Output('stats-grid', 'children'),
      Output('year-display', 'children')],
     [Input('region-dropdown', 'value'),
-     Input('year-slider', 'value')]
+     Input('year-slider', 'value'),
+     Input('viewport-width-input', 'value')]
 )
-def update_dashboard(selected_region, selected_year):
+def update_dashboard(selected_region, selected_year, viewport_width):
     # Snap slider integer to nearest valid year in the dataset
     selected_year = min(years, key=lambda y: abs(y - selected_year))
     # Filter current snapshot
@@ -193,6 +197,9 @@ def update_dashboard(selected_region, selected_year):
             ], className="stat-cell")
         )
 
+    # Check if we are rendering for a mobile device screen (<= 768px)
+    is_mobile = viewport_width is not None and int(viewport_width) <= 768
+
     # Pie Chart
     pie_chart = px.pie(
         filtered_data,
@@ -202,23 +209,41 @@ def update_dashboard(selected_region, selected_year):
         color='Class',
         color_discrete_map=brutalist_color_map
     )
-    pie_chart.update_layout(
-        paper_bgcolor='#FFFFFF',
-        plot_bgcolor='#FFFFFF',
-        margin=dict(t=50, b=150, l=10, r=10),
-        font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
-        title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
-        legend=dict(
+
+    if is_mobile:
+        pie_margin = dict(t=50, b=220, l=10, r=10)
+        pie_legend = dict(
             orientation='h',
             yanchor='top',
-            y=-0.2,
+            y=-0.25,
             xanchor='center',
             x=0.5,
-            font=dict(family="IBM Plex Mono, monospace", size=9, color="#000000"),
+            font=dict(family="IBM Plex Mono, monospace", size=8, color="#000000"),
             bgcolor='#FFFFFF',
             bordercolor='#000000',
             borderwidth=2
         )
+    else:
+        pie_margin = dict(t=50, b=120, l=10, r=10)
+        pie_legend = dict(
+            orientation='h',
+            yanchor='top',
+            y=-0.15,
+            xanchor='center',
+            x=0.5,
+            font=dict(family="Space Grotesk, sans-serif", size=10, color="#000000"),
+            bgcolor='#FFFFFF',
+            bordercolor='#000000',
+            borderwidth=2
+        )
+
+    pie_chart.update_layout(
+        paper_bgcolor='#FFFFFF',
+        plot_bgcolor='#FFFFFF',
+        margin=pie_margin,
+        font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
+        title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
+        legend=pie_legend
     )
     pie_chart.update_traces(
         marker=dict(line=dict(color='#000000', width=2)),
@@ -244,23 +269,36 @@ def update_dashboard(selected_region, selected_year):
         title=f"LAND USE TRENDS OVER TIME IN {selected_region.upper()}",
         color_discrete_map=brutalist_color_map
     )
-    trend_graph.update_layout(
-        paper_bgcolor='#FFFFFF',
-        plot_bgcolor='#FFFFFF',
-        margin=dict(t=50, b=150, l=20, r=20),
-        font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
-        title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
-        legend=dict(
+
+    if is_mobile:
+        trend_margin = dict(t=50, b=240, l=20, r=20)
+        trend_legend = dict(
             orientation='h',
             yanchor='top',
-            y=-0.2,
+            y=-0.28,
             xanchor='center',
             x=0.5,
-            font=dict(family="IBM Plex Mono, monospace", size=9, color="#000000"),
+            font=dict(family="IBM Plex Mono, monospace", size=8, color="#000000"),
             bgcolor='#FFFFFF',
             bordercolor='#000000',
             borderwidth=2
-        ),
+        )
+    else:
+        trend_margin = dict(t=50, b=20, l=20, r=20)
+        trend_legend = dict(
+            font=dict(family="IBM Plex Mono, monospace", size=10, color="#000000"),
+            bgcolor='#FFFFFF',
+            bordercolor='#000000',
+            borderwidth=2
+        )
+
+    trend_graph.update_layout(
+        paper_bgcolor='#FFFFFF',
+        plot_bgcolor='#FFFFFF',
+        margin=trend_margin,
+        font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
+        title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
+        legend=trend_legend,
         xaxis=dict(
             showgrid=True,
             gridcolor='#EAEAEA',

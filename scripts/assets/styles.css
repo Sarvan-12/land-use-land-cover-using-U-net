@@ -250,8 +250,14 @@ label {
     margin-bottom: 0px !important;
 }
 
-.responsive-graph {
+.pie-graph {
     height: 480px;
+    width: 100%;
+}
+
+.trend-graph {
+    height: 480px;
+    width: 100%;
 }
 
 @media screen and (max-width: 768px) {
@@ -291,8 +297,14 @@ label {
         font-size: 18px;
     }
 
-    .responsive-graph {
-        height: 380px;
+    .pie-graph {
+        height: 500px !important;
+        width: 100% !important;
+    }
+
+    .trend-graph {
+        height: 450px !important;
+        width: 100% !important;
     }
 }
 
