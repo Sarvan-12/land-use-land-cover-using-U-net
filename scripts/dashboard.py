@@ -329,6 +329,10 @@ app.clientside_callback(
     Input('stats-toggle-btn', 'n_clicks')
 )
 
+def create_dashboard():
+    """Wrapper function to run the Dash dashboard server."""
+    app.run(debug=False)
+
 # Run server
 if __name__ == "__main__":
-    app.run(debug=False)
+    create_dashboard()

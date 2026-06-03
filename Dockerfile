@@ -18,4 +18,4 @@ COPY data/analysis_results/area_analysis1.csv ./data/analysis_results/area_analy
 EXPOSE 7860
 
 # Start server
-CMD ["gunicorn", "--bind", "0.0.0.0:7860", "scripts.dash1:server"]
+CMD ["gunicorn", "--bind", "0.0.0.0:7860", "scripts.dashboard:server"]

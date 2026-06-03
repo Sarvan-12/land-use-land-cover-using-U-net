@@ -1,8 +1,10 @@
 # Land Use Land Cover Classification using U-Net
 
+[![Live Demo](https://img.shields.io/badge/🔍%20Live%20Demo-Hugging%20Face%20Spaces-yellow?style=for-the-badge&logo=huggingface)](https://huggingface.co/spaces/Sharvan12/LULC-dashboard)
+
 This project uses satellite images from 1994 to 2023 to classify land into different categories like water, urban areas, vegetation, etc., using a deep learning model called **U-Net**.
 
-It also includes a **dashboard** that shows how land use has changed over time.
+It also includes an **interactive dashboard** that shows how land use has changed over time.
 
 ---
 
@@ -24,7 +26,7 @@ It also includes a **dashboard** that shows how land use has changed over time.
 │   ├── train_unet.py    # Training logic
 │   ├── segment_images.py# Model inference/prediction
 │   ├── analyze.py       # Area calculation and CSV generation
-│   └── dash1.py         # Dashboard application
+│   └── dashboard.py     # Dashboard application
 ├── requirements.txt     # Python dependencies
 └── README.md            # Documentation
 ```
@@ -84,7 +86,7 @@ python scripts/analyze.py
 ### 6. Run the Dashboard
 Launch the interactive web visualization.
 ```bash
-python scripts/dash1.py
+python scripts/dashboard.py
 ```
 Then open [http://127.0.0.1:8050](http://127.0.0.1:8050) in your browser.
 
