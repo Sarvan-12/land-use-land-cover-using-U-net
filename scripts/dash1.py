@@ -142,8 +142,17 @@ app.layout = html.Div([
         # Right: Stats only
         html.Div([
             html.Div([
-                html.H3("LAND TYPE AREA STATISTICS", style={'marginBottom': '15px', 'letterSpacing': '0.5px'}),
-                html.Div(id='stats-grid', className='stats-grid')
+                # Desktop header — always visible
+                html.H3("LAND TYPE AREA STATISTICS",
+                        className='stats-desktop-header'),
+                # Mobile toggle button — hidden on desktop via CSS
+                html.Button(
+                    "LAND TYPE AREA STATISTICS \u25bc",
+                    id='stats-toggle-btn',
+                    className='stats-toggle-btn',
+                    n_clicks=0
+                ),
+                html.Div(id='stats-grid', className='stats-grid stats-grid-hidden')
             ], className="stats-container"),
         ])
     ], className="main-grid"),
@@ -297,6 +306,26 @@ def update_dashboard(selected_region, selected_year):
         )
 
     return pie_chart, trend_graph, stats_cells, str(selected_year), legend_items
+
+# Clientside callback — toggles stats grid visibility on mobile button click
+app.clientside_callback(
+    """
+    function(n_clicks) {
+        if (n_clicks === undefined || n_clicks === null) {
+            return ["LAND TYPE AREA STATISTICS \u25bc", "stats-grid stats-grid-hidden"];
+        }
+        var isOpen = n_clicks % 2 === 1;
+        var btnText  = isOpen
+            ? "LAND TYPE AREA STATISTICS \u25b2"
+            : "LAND TYPE AREA STATISTICS \u25bc";
+        var gridClass = isOpen ? "stats-grid" : "stats-grid stats-grid-hidden";
+        return [btnText, gridClass];
+    }
+    """,
+    [Output('stats-toggle-btn', 'children'),
+     Output('stats-grid', 'className')],
+    Input('stats-toggle-btn', 'n_clicks')
+)
 
 # Run server
 if __name__ == "__main__":

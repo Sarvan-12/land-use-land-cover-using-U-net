@@ -202,6 +202,18 @@ label {
     gap: 15px;
 }
 
+/* Desktop stats section header — always visible */
+.stats-desktop-header {
+    display: block;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+/* Mobile toggle button — hidden on desktop */
+.stats-toggle-btn {
+    display: none;
+}
+
 .stat-cell {
     background: #FFFFFF;
     border: 3px solid #000000;
@@ -259,6 +271,41 @@ label {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
+    }
+
+    /* Hide desktop header and show mobile toggle button */
+    .stats-desktop-header {
+        display: none;
+    }
+
+    .stats-toggle-btn {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #FFDD00;
+        border: 3px solid #000000;
+        box-shadow: 3px 3px 0px #000000;
+        padding: 12px 15px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin-bottom: 0;
+        color: #000000;
+        box-sizing: border-box;
+    }
+
+    .stats-toggle-btn:hover {
+        background-color: #FF4D4D;
+        color: #FFFFFF;
+    }
+
+    /* Hidden state for stats grid on mobile */
+    .stats-grid-hidden {
+        display: none !important;
     }
 
     .trend-graph {
