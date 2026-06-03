@@ -6,11 +6,13 @@ from dash import dcc, html
 from dash.dependencies import Input, Output
 
 # Path to the CSV file
-CSV_PATH = "data/analysis_results/area_analysis1.csv"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CSV_PATH = os.path.join(BASE_DIR, "..", "data", "analysis_results", "area_analysis1.csv")
 
 # Create a Dash app
 app = dash.Dash(__name__)
 app.title = "LULC Classification Dashboard"
+server = app.server
 
 # Read the CSV file
 def load_data():
@@ -329,4 +331,4 @@ app.clientside_callback(
 
 # Run server
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)

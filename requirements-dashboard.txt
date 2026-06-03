@@ -1,0 +1,5 @@
+pandas>=1.5.0
+plotly>=5.10.0
+dash>=2.7.0
+flask>=2.2.0
+gunicorn>=20.1.0
