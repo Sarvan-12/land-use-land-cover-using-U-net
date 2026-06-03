@@ -153,13 +153,13 @@ app.layout = html.Div([
         # Pie Chart Card
         html.Div([
             html.Div("Distribution Breakdown", className="brutalist-card-header cyan-header"),
-            html.Div(dcc.Graph(id='pie-chart', style={'height': '480px'}), className="brutalist-card-content", style={'padding': '0'})
+            html.Div(dcc.Graph(id='pie-chart', className="responsive-graph"), className="brutalist-card-content", style={'padding': '0'})
         ], className="brutalist-card graph-box"),
 
         # Trend Card
         html.Div([
             html.Div("Temporal Change Trends", className="brutalist-card-header"),
-            html.Div(dcc.Graph(id='trend-graph', style={'height': '480px'}), className="brutalist-card-content", style={'padding': '0'})
+            html.Div(dcc.Graph(id='trend-graph', className="responsive-graph"), className="brutalist-card-content", style={'padding': '0'})
         ], className="brutalist-card graph-box")
     ], className="graphs-row")
 ])
@@ -205,16 +205,16 @@ def update_dashboard(selected_region, selected_year):
     pie_chart.update_layout(
         paper_bgcolor='#FFFFFF',
         plot_bgcolor='#FFFFFF',
-        margin=dict(t=50, b=120, l=10, r=10),
+        margin=dict(t=50, b=150, l=10, r=10),
         font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
         title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
         legend=dict(
             orientation='h',
             yanchor='top',
-            y=-0.15,
+            y=-0.2,
             xanchor='center',
             x=0.5,
-            font=dict(family="IBM Plex Mono, monospace", size=10, color="#000000"),
+            font=dict(family="IBM Plex Mono, monospace", size=9, color="#000000"),
             bgcolor='#FFFFFF',
             bordercolor='#000000',
             borderwidth=2
@@ -247,11 +247,16 @@ def update_dashboard(selected_region, selected_year):
     trend_graph.update_layout(
         paper_bgcolor='#FFFFFF',
         plot_bgcolor='#FFFFFF',
-        margin=dict(t=50, b=20, l=20, r=20),
+        margin=dict(t=50, b=150, l=20, r=20),
         font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
         title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
         legend=dict(
-            font=dict(family="IBM Plex Mono, monospace", size=10, color="#000000"),
+            orientation='h',
+            yanchor='top',
+            y=-0.2,
+            xanchor='center',
+            x=0.5,
+            font=dict(family="IBM Plex Mono, monospace", size=9, color="#000000"),
             bgcolor='#FFFFFF',
             bordercolor='#000000',
             borderwidth=2
