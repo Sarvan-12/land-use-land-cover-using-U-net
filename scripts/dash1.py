@@ -292,13 +292,7 @@ def update_dashboard(selected_region, selected_year):
                     'marginRight': '10px',
                     'flexShrink': '0'
                 }),
-                html.Span(label, style={
-                    'fontFamily': "'IBM Plex Mono', monospace",
-                    'fontSize': '12px',
-                    'fontWeight': '700',
-                    'color': '#000000',
-                    'textTransform': 'uppercase'
-                })
+                html.Span(label, className="legend-item-text")
             ], style={'display': 'flex', 'alignItems': 'center'})
         )
 

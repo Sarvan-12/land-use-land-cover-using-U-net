@@ -284,10 +284,24 @@ label {
     gap: 12px;
 }
 
+.legend-item-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: #000000;
+    text-transform: uppercase;
+}
+
 @media screen and (max-width: 768px) {
     .custom-legend-card {
+        padding: 10px;
         margin: 15px;
         grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+    }
+
+    .legend-item-text {
+        font-size: 10px;
     }
 }
 
