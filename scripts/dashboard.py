@@ -90,7 +90,7 @@ app.layout = html.Div([
         html.Div("SATELLITE IMAGE ANALYSIS & CHANGE MONITORING (1994 - 2023)", className="dashboard-subtitle")
     ], className="dashboard-header"),
 
-    # Main Dashboard Area: Controls (left) | Stats (right)
+    # Main Dashboard Area: Controls (left) | U-Net Map (middle) | Stats (right)
     html.Div([
         # Left: Controls
         html.Div([
@@ -141,6 +141,16 @@ app.layout = html.Div([
             ], className="brutalist-card")
         ]),
 
+        # Middle: U-Net Map Card
+        html.Div([
+            html.Div([
+                html.Div("LAND COVER MAP", className="brutalist-card-header cyan-header"),
+                html.Div([
+                    html.Img(id='classified-map-img', className="comparison-image")
+                ], className="brutalist-card-content", style={'textAlign': 'center', 'padding': '15px'})
+            ], className="brutalist-card")
+        ]),
+
         # Right: Stats only
         html.Div([
             html.Div([
@@ -184,7 +194,8 @@ app.layout = html.Div([
      Output('trend-graph', 'figure'),
      Output('stats-grid', 'children'),
      Output('year-display', 'children'),
-     Output('trend-legend-container', 'children')],
+     Output('trend-legend-container', 'children'),
+     Output('classified-map-img', 'src')],
     [Input('region-dropdown', 'value'),
      Input('year-slider', 'value')]
 )
@@ -307,7 +318,10 @@ def update_dashboard(selected_region, selected_year):
             ], style={'display': 'flex', 'alignItems': 'center'})
         )
 
-    return pie_chart, trend_graph, stats_cells, str(selected_year), legend_items
+    # Determine dynamic image source asset URL for the classified map
+    classified_img_src = app.get_asset_url(f"images/classified/{selected_region}_{selected_region}_{selected_year}.png")
+
+    return pie_chart, trend_graph, stats_cells, str(selected_year), legend_items, classified_img_src
 
 # Clientside callback — toggles stats grid visibility on mobile button click
 app.clientside_callback(
