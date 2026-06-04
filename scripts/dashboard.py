@@ -11,9 +11,9 @@ CSV_PATH = os.path.join(BASE_DIR, "..", "data", "analysis_results", "area_analys
 
 # User-configurable region display names mapping
 REGION_DISPLAY_NAMES = {
-    'region_1': 'REGION 1',
-    'region_2': 'REGION 2',
-    'region_3': 'REGION 3'
+    'region_1': 'Matanuska-Susitna Valley',
+    'region_2': 'Tanana River Basin',
+    'region_3': 'Kenai Peninsula'
 }
 
 # Create a Dash app
@@ -98,7 +98,7 @@ app.layout = html.Div(id='main-container', className='main-container', children=
     html.Div([
         html.Div([
             html.H1("LAND USE LAND COVER", style={'margin': '0'}),
-            html.Div("SATELLITE IMAGE ANALYSIS & CHANGE MONITORING (1994 - 2023)", className="dashboard-subtitle")
+            html.Div("SATELLITE IMAGE ANALYSIS & CHANGE MONITORING IN ALASKA, USA (1994 - 2023)", className="dashboard-subtitle")
         ], style={'flex': '1', 'minWidth': '300px'}),
         html.Div([
             html.Label("THEME MODE:", className="theme-label", style={'marginRight': '10px', 'fontWeight': '700'}),
