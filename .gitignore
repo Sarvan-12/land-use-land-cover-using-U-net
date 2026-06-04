@@ -29,5 +29,5 @@ data/analysis_results/*
 # Ignore environment config
 .env
 
-# Ignore generated web asset images
-scripts/assets/images/
+# Ignore raw generated web asset images but track classified ones
+scripts/assets/images/raw/
