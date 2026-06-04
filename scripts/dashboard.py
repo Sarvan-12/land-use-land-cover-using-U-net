@@ -159,6 +159,23 @@ app.layout = html.Div([
         ])
     ], className="main-grid"),
 
+    # Full-width Satellite and U-Net Map Comparison Card
+    html.Div([
+        html.Div("Satellite Imagery vs AI Classification Map", className="brutalist-card-header yellow-header"),
+        html.Div([
+            # Left: Raw Satellite
+            html.Div([
+                html.H4("RAW SATELLITE IMAGERY"),
+                html.Img(id='raw-satellite-img', className="comparison-image")
+            ], className="image-container-box"),
+            # Right: AI Classified Map
+            html.Div([
+                html.H4("U-NET AI SEGMENTED MAP"),
+                html.Img(id='classified-map-img', className="comparison-image")
+            ], className="image-container-box")
+        ], className="image-comparison-row brutalist-card-content")
+    ], className="brutalist-card", style={'marginBottom': '30px'}),
+
     # Full-width Charts Row — spans both columns
     html.Div([
         # Pie Chart Card
@@ -184,7 +201,9 @@ app.layout = html.Div([
      Output('trend-graph', 'figure'),
      Output('stats-grid', 'children'),
      Output('year-display', 'children'),
-     Output('trend-legend-container', 'children')],
+     Output('trend-legend-container', 'children'),
+     Output('raw-satellite-img', 'src'),
+     Output('classified-map-img', 'src')],
     [Input('region-dropdown', 'value'),
      Input('year-slider', 'value')]
 )
@@ -307,7 +326,11 @@ def update_dashboard(selected_region, selected_year):
             ], style={'display': 'flex', 'alignItems': 'center'})
         )
 
-    return pie_chart, trend_graph, stats_cells, str(selected_year), legend_items
+    # Determine dynamic image source asset URLs
+    raw_img_src = app.get_asset_url(f"images/raw/{selected_region}_{selected_region}_{selected_year}.png")
+    classified_img_src = app.get_asset_url(f"images/classified/{selected_region}_{selected_region}_{selected_year}.png")
+
+    return pie_chart, trend_graph, stats_cells, str(selected_year), legend_items, raw_img_src, classified_img_src
 
 # Clientside callback — toggles stats grid visibility on mobile button click
 app.clientside_callback(
