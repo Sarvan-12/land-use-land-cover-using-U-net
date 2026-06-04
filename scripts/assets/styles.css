@@ -8,6 +8,12 @@ body {
     padding: 25px;
 }
 
+.main-container {
+    min-height: 100vh;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
@@ -537,6 +543,8 @@ label {
 .dark-mode {
     background-color: #121212 !important;
     color: #FFFFFF !important;
+    margin: -25px !important;
+    padding: 25px !important;
 }
 
 .dark-mode .dashboard-header {
