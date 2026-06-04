@@ -418,14 +418,21 @@ def export_csv(n_clicks, selected_region, selected_year):
     filtered = df[(df['Region'] == selected_region) & (df['Year'] == selected_year)]
     return dcc.send_data_frame(filtered.to_csv, f"LULC_{selected_region}_{selected_year}.csv", index=False)
 
-@app.callback(
+app.clientside_callback(
+    """
+    function(theme) {
+        if (theme === 'dark') {
+            document.body.classList.add('dark-mode');
+            return 'main-container dark-mode';
+        } else {
+            document.body.classList.remove('dark-mode');
+            return 'main-container';
+        }
+    }
+    """,
     Output('main-container', 'className'),
     Input('theme-toggle', 'value')
 )
-def toggle_theme(theme):
-    if theme == 'dark':
-        return 'main-container dark-mode'
-    return 'main-container'
 
 def create_dashboard():
     """Wrapper function to run the Dash dashboard server."""

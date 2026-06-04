@@ -540,6 +540,10 @@ label {
 }
 
 /* Dark Mode overrides */
+body.dark-mode {
+    background-color: #121212 !important;
+}
+
 .dark-mode {
     background-color: #121212 !important;
     color: #FFFFFF !important;
@@ -550,6 +554,12 @@ label {
 .dark-mode .dashboard-header {
     background-color: #1A1A1A !important;
     border-bottom: 5px solid #FFFFFF !important;
+}
+
+.dark-mode .stats-container {
+    background-color: #1A1A1A !important;
+    border: 3px solid #FFFFFF !important;
+    box-shadow: 6px 6px 0px #FFFFFF !important;
 }
 
 .dark-mode h1, 
@@ -640,6 +650,15 @@ label {
 .dark-mode .rc-slider-handle {
     border: 3px solid #FFFFFF !important;
     box-shadow: 3px 3px 0px #FFFFFF !important;
+}
+
+.dark-mode .rc-slider-dot {
+    background-color: #1A1A1A !important;
+    border: 3px solid #FFFFFF !important;
+}
+
+.dark-mode .rc-slider-dot-active {
+    border-color: #00C2FF !important;
 }
 
 .dark-mode .rc-slider-mark-text {
