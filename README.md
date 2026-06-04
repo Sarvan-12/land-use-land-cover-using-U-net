@@ -1,3 +1,12 @@
+---
+title: LULC Dashboard
+emoji: 📊
+colorFrom: yellow
+colorTo: red
+sdk: docker
+pinned: false
+---
+
 # 🛰️ Land Use Land Cover (LULC) Classification using U-Net
 
 > A Deep Learning satellite imagery segmentation pipeline and an interactive dashboard monitoring environmental land cover changes (1994 – 2023).
