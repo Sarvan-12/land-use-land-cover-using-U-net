@@ -1,3 +1,4 @@
+<!-- Hugging Face Space Metadata Reference:
 ---
 title: LULC Dashboard
 emoji: 📊
@@ -6,6 +7,7 @@ colorTo: red
 sdk: docker
 pinned: false
 ---
+-->
 
 # 🛰️ Land Use Land Cover (LULC) Classification using U-Net
 
