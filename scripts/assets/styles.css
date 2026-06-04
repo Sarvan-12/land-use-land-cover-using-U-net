@@ -2,7 +2,6 @@
 
 
 
-
 body {
     background-color: #F5F0E8;
     color: #000000;
@@ -140,8 +139,7 @@ label {
     letter-spacing: 0.5px;
 }
 
-/* Dropdown Override - Forced light styling in both light/dark mode for maximum visibility */
-.dash-dropdown [class*="-control"],
+/* Dropdown Override - Fixed white background & black text in both light and dark themes */
 [class*="-control"],
 .Select-control {
     background-color: #FFFFFF !important;
@@ -154,11 +152,8 @@ label {
     box-sizing: border-box !important;
 }
 
-.dash-dropdown [class*="-singleValue"],
 [class*="-singleValue"],
-.dash-dropdown [class*="-placeholder"],
 [class*="-placeholder"],
-.dash-dropdown [class*="-ValueContainer"],
 [class*="-ValueContainer"],
 .Select-value-label, 
 .Select-value, 
@@ -168,7 +163,6 @@ label {
     padding-left: 10px !important;
 }
 
-.dash-dropdown [class*="-menu"],
 [class*="-menu"],
 .Select-menu-outer {
     border: 3px solid #000000 !important;
@@ -178,7 +172,6 @@ label {
     background-color: #FFFFFF !important;
 }
 
-.dash-dropdown [class*="-option"],
 [class*="-option"],
 .Select-option {
     color: #000000 !important;
@@ -188,23 +181,19 @@ label {
     border: none !important;
 }
 
-.dash-dropdown [class*="-option"]:hover,
-.dash-dropdown [class*="-option"][class*="-option--is-focused"],
 [class*="-option"]:hover,
 [class*="-option"][class*="-option--is-focused"],
 .Select-option:hover, 
 .Select-option.is-focused {
-    background-color: #FFDD00 !important;
+    background-color: #EEEEEE !important;
     color: #000000 !important;
 }
 
-.dash-dropdown [class*="-input"] > input,
 [class*="-input"] > input,
 .Select-input > input {
     color: #000000 !important;
 }
 
-.dash-dropdown [class*="-input"],
 [class*="-input"],
 .Select-input {
     background-color: transparent !important;
