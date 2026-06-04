@@ -357,6 +357,13 @@ label {
     gap: 12px;
 }
 
+.custom-legend-card-grid {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
 .legend-item-text {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
@@ -373,6 +380,12 @@ label {
         gap: 5px;
     }
 
+    .custom-legend-card-grid {
+        padding: 15px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
     .legend-item-text {
         font-size: 10px;
     }
@@ -380,6 +393,10 @@ label {
 
 @media screen and (max-width: 480px) {
     .custom-legend-card {
+        grid-template-columns: 1fr;
+    }
+    
+    .custom-legend-card-grid {
         grid-template-columns: 1fr;
     }
 }
