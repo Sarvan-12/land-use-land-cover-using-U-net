@@ -112,9 +112,6 @@ app.layout = html.Div(id='main-container', className='main-container', children=
         ], className="theme-selector-box")
     ], className="dashboard-header", style={'display': 'flex', 'justifyContent': 'space-between', 'alignItems': 'center', 'flexWrap': 'wrap', 'gap': '15px'}),
 
-    # KPI Highlights Row
-    html.Div(id='kpi-row', className="kpi-row"),
-
     # Main Dashboard Area: Controls (left) | U-Net Map (middle) | Stats (right)
     html.Div([
         # Left: Controls
@@ -196,6 +193,9 @@ app.layout = html.Div(id='main-container', className='main-container', children=
             ], className="stats-container"),
         ])
     ], className="main-grid"),
+
+    # KPI Highlights Row
+    html.Div(id='kpi-row', className="kpi-row"),
 
     # Full-width Charts Row — spans both columns
     html.Div([
