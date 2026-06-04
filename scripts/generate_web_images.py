@@ -42,7 +42,7 @@ brutalist_color_map = {
 
 def generate_images():
     processed_dir = './data/processed'
-    labels_dir = './data/labels'
+    labels_dir = './data/raw'
     
     # Target directory in assets folder for Dash static files
     assets_raw_dir = './scripts/assets/images/raw'
@@ -78,6 +78,7 @@ def generate_images():
                 label_tif_path = os.path.join(region_label_path, file_name)
                 if os.path.exists(label_tif_path):
                     mask_img = Image.open(label_tif_path)
+                    mask_img = mask_img.resize((256, 256), Image.NEAREST)
                     mask_arr = np.array(mask_img)
                     
                     # Create empty RGB canvas

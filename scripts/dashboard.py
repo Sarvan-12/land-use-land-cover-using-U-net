@@ -90,7 +90,7 @@ app.layout = html.Div([
         html.Div("SATELLITE IMAGE ANALYSIS & CHANGE MONITORING (1994 - 2023)", className="dashboard-subtitle")
     ], className="dashboard-header"),
 
-    # Main Dashboard Area: Controls (left) | Stats (right)
+    # Main Dashboard Area: Controls (left) | U-Net Map (middle) | Stats (right)
     html.Div([
         # Left: Controls
         html.Div([
@@ -141,6 +141,16 @@ app.layout = html.Div([
             ], className="brutalist-card")
         ]),
 
+        # Middle: U-Net Map Card
+        html.Div([
+            html.Div([
+                html.Div("LAND COVER MAP", className="brutalist-card-header cyan-header"),
+                html.Div([
+                    html.Img(id='classified-map-img', className="comparison-image")
+                ], className="brutalist-card-content", style={'textAlign': 'center', 'padding': '15px'})
+            ], className="brutalist-card")
+        ]),
+
         # Right: Stats only
         html.Div([
             html.Div([
@@ -158,23 +168,6 @@ app.layout = html.Div([
             ], className="stats-container"),
         ])
     ], className="main-grid"),
-
-    # Full-width Satellite and U-Net Map Comparison Card
-    html.Div([
-        html.Div("Satellite Imagery vs AI Classification Map", className="brutalist-card-header yellow-header"),
-        html.Div([
-            # Left: Raw Satellite
-            html.Div([
-                html.H4("RAW SATELLITE IMAGERY"),
-                html.Img(id='raw-satellite-img', className="comparison-image")
-            ], className="image-container-box"),
-            # Right: AI Classified Map
-            html.Div([
-                html.H4("U-NET AI SEGMENTED MAP"),
-                html.Img(id='classified-map-img', className="comparison-image")
-            ], className="image-container-box")
-        ], className="image-comparison-row brutalist-card-content")
-    ], className="brutalist-card", style={'marginBottom': '30px'}),
 
     # Full-width Charts Row — spans both columns
     html.Div([
@@ -202,7 +195,6 @@ app.layout = html.Div([
      Output('stats-grid', 'children'),
      Output('year-display', 'children'),
      Output('trend-legend-container', 'children'),
-     Output('raw-satellite-img', 'src'),
      Output('classified-map-img', 'src')],
     [Input('region-dropdown', 'value'),
      Input('year-slider', 'value')]
@@ -326,11 +318,10 @@ def update_dashboard(selected_region, selected_year):
             ], style={'display': 'flex', 'alignItems': 'center'})
         )
 
-    # Determine dynamic image source asset URLs
-    raw_img_src = app.get_asset_url(f"images/raw/{selected_region}_{selected_region}_{selected_year}.png")
+    # Determine dynamic image source asset URL for the classified map
     classified_img_src = app.get_asset_url(f"images/classified/{selected_region}_{selected_region}_{selected_year}.png")
 
-    return pie_chart, trend_graph, stats_cells, str(selected_year), legend_items, raw_img_src, classified_img_src
+    return pie_chart, trend_graph, stats_cells, str(selected_year), legend_items, classified_img_src
 
 # Clientside callback — toggles stats grid visibility on mobile button click
 app.clientside_callback(

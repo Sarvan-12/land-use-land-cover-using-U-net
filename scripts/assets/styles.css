@@ -46,14 +46,40 @@ h1, h2, h3, h4, h5, h6 {
 /* Main Grid Layout */
 .main-grid {
     display: grid;
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: 320px 320px 1fr;
     gap: 30px;
-    align-items: start;
+    align-items: stretch; /* Make columns equal height */
+    margin-bottom: 30px; /* Add spacing below the top row */
+}
+
+.main-grid > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-grid .brutalist-card,
+.main-grid .stats-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0px !important; /* Remove bottom margins to align bottom borders */
+}
+
+.main-grid .brutalist-card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
 }
 
 @media screen and (max-width: 1024px) {
     .main-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .main-grid .brutalist-card,
+    .main-grid .stats-container {
+        margin-bottom: 20px !important;
     }
 }
 
@@ -198,7 +224,7 @@ label {
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: 15px;
 }
 
