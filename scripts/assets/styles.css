@@ -762,19 +762,21 @@ body.dark-mode [class*="tooltip"] {
     color: #000000 !important;
 }
 
+.theme-selector-box label {
+    display: inline-block !important;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    vertical-align: middle;
+}
+
 .theme-radio label {
-    display: inline-flex !important;
-    align-items: center;
+    display: inline-block !important;
     margin-right: 15px;
+    margin-bottom: 0 !important;
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 700;
     cursor: pointer;
-    margin-bottom: 0 !important;
-    white-space: nowrap;
-}
-
-.theme-label {
-    margin-bottom: 0 !important;
+    vertical-align: middle;
 }
 
 @media screen and (max-width: 768px) {
