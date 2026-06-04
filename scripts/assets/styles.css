@@ -588,18 +588,66 @@ label {
 }
 
 /* Dash dropdown controls for dark mode */
-.dark-mode .dash-dropdown .Select-control,
-.dark-mode .dash-dropdown .Select-placeholder,
-.dark-mode .dash-dropdown .Select-value-label {
-    background-color: #222222 !important;
-    border-color: #FFFFFF !important;
+.dark-mode .Select-control {
+    background-color: #1A1A1A !important;
+    border: 3px solid #FFFFFF !important;
+    color: #FFFFFF !important;
+    box-shadow: 4px 4px 0px #FFFFFF !important;
+}
+
+.dark-mode .Select-placeholder,
+.dark-mode .Select-value-label,
+.dark-mode .Select-value {
     color: #FFFFFF !important;
 }
 
-.dark-mode .dash-dropdown .Select-menu-outer {
-    background-color: #222222 !important;
+.dark-mode .Select-menu-outer {
+    background-color: #1A1A1A !important;
     color: #FFFFFF !important;
     border: 3px solid #FFFFFF !important;
+    box-shadow: 4px 4px 0px #FFFFFF !important;
+}
+
+.dark-mode .Select-option {
+    color: #FFFFFF !important;
+    background-color: #1A1A1A !important;
+}
+
+.dark-mode .Select-option:hover, 
+.dark-mode .Select-option.is-focused {
+    background-color: #FFDD00 !important;
+    color: #000000 !important;
+}
+
+.dark-mode .Select-input > input {
+    color: #FFFFFF !important;
+}
+
+.dark-mode .Select-input {
+    background-color: transparent !important;
+}
+
+/* Rc-slider controls for dark mode */
+.dark-mode .rc-slider-rail {
+    background-color: #222222 !important;
+    border: 3px solid #FFFFFF !important;
+}
+
+.dark-mode .rc-slider-track {
+    background-color: #FFFFFF !important;
+}
+
+.dark-mode .rc-slider-handle {
+    border: 3px solid #FFFFFF !important;
+    box-shadow: 3px 3px 0px #FFFFFF !important;
+}
+
+.dark-mode .rc-slider-mark-text {
+    color: #FFFFFF !important;
+}
+
+.dark-mode .rc-slider-mark-text-active {
+    color: #00C2FF !important;
 }
 
 .dark-mode .stat-cell {
