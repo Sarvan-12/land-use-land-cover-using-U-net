@@ -9,15 +9,6 @@
     --dropdown-hover-text: #000000;
 }
 
-body.dark-mode,
-.dark-mode {
-    --dropdown-bg: #1A1A1A;
-    --dropdown-border: #FFFFFF;
-    --dropdown-shadow: #FFFFFF;
-    --dropdown-text: #FFFFFF;
-    --dropdown-hover-bg: #333333;
-    --dropdown-hover-text: #FFFFFF;
-}
 
 body {
     background-color: #F5F0E8;
