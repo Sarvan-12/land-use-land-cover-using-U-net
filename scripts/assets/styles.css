@@ -1,5 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=IBM+Plex+Mono:wght@400;700&display=swap');
 
+:root {
+    --dropdown-bg: #FFFFFF;
+    --dropdown-border: #000000;
+    --dropdown-shadow: #000000;
+    --dropdown-text: #000000;
+    --dropdown-hover-bg: #FFDD00;
+    --dropdown-hover-text: #000000;
+}
+
+body.dark-mode,
+.dark-mode {
+    --dropdown-bg: #1A1A1A;
+    --dropdown-border: #FFFFFF;
+    --dropdown-shadow: #FFFFFF;
+    --dropdown-text: #FFFFFF;
+    --dropdown-hover-bg: #333333;
+    --dropdown-hover-text: #FFFFFF;
+}
+
 body {
     background-color: #F5F0E8;
     color: #000000;
@@ -140,13 +159,13 @@ label {
 /* Dropdown Override */
 .dash-dropdown [class*="-control"],
 .Select-control {
-    background-color: #FFFFFF !important;
-    border: 3px solid #000000 !important;
+    background-color: var(--dropdown-bg) !important;
+    border: 3px solid var(--dropdown-border) !important;
     border-radius: 0px !important;
-    color: #000000 !important;
+    color: var(--dropdown-text) !important;
     font-weight: 700 !important;
     height: 48px !important;
-    box-shadow: 4px 4px 0px #000000 !important;
+    box-shadow: 4px 4px 0px var(--dropdown-shadow) !important;
     box-sizing: border-box !important;
 }
 
@@ -156,24 +175,24 @@ label {
 .Select-value-label, 
 .Select-value, 
 .Select-placeholder {
-    color: #000000 !important;
+    color: var(--dropdown-text) !important;
     line-height: 38px !important;
     padding-left: 10px !important;
 }
 
 .dash-dropdown [class*="-menu"],
 .Select-menu-outer {
-    border: 3px solid #000000 !important;
+    border: 3px solid var(--dropdown-border) !important;
     border-top: none !important;
     border-radius: 0px !important;
-    box-shadow: 4px 4px 0px #000000 !important;
-    background-color: #FFFFFF !important;
+    box-shadow: 4px 4px 0px var(--dropdown-shadow) !important;
+    background-color: var(--dropdown-bg) !important;
 }
 
 .dash-dropdown [class*="-option"],
 .Select-option {
-    color: #000000 !important;
-    background-color: #FFFFFF !important;
+    color: var(--dropdown-text) !important;
+    background-color: var(--dropdown-bg) !important;
     font-weight: bold !important;
     padding: 12px !important;
     border: none !important;
@@ -183,8 +202,18 @@ label {
 .dash-dropdown [class*="-option"][class*="-option--is-focused"],
 .Select-option:hover, 
 .Select-option.is-focused {
-    background-color: #FFDD00 !important;
-    color: #000000 !important;
+    background-color: var(--dropdown-hover-bg) !important;
+    color: var(--dropdown-hover-text) !important;
+}
+
+.dash-dropdown [class*="-input"] > input,
+.Select-input > input {
+    color: var(--dropdown-text) !important;
+}
+
+.dash-dropdown [class*="-input"],
+.Select-input {
+    background-color: transparent !important;
 }
 
 /* Sliders */
@@ -635,101 +664,7 @@ body.dark-mode {
     color: #FFFFFF !important;
 }
 
-/* Dash dropdown controls for dark mode */
-.dark-mode .dash-dropdown [class*="-control"],
-body.dark-mode .dash-dropdown [class*="-control"],
-.dark-mode [class*="-control"],
-body.dark-mode [class*="-control"],
-.dark-mode .dash-dropdown .Select-control,
-body.dark-mode .dash-dropdown .Select-control,
-.dark-mode .Select-control,
-body.dark-mode .Select-control {
-    background-color: #1A1A1A !important;
-    border: 3px solid #FFFFFF !important;
-    box-shadow: 4px 4px 0px #FFFFFF !important;
-    color: #FFFFFF !important;
-}
-
-.dark-mode .dash-dropdown [class*="-singleValue"],
-body.dark-mode .dash-dropdown [class*="-singleValue"],
-.dark-mode [class*="-singleValue"],
-body.dark-mode [class*="-singleValue"],
-.dark-mode .dash-dropdown [class*="-placeholder"],
-body.dark-mode .dash-dropdown [class*="-placeholder"],
-.dark-mode [class*="-placeholder"],
-body.dark-mode [class*="-placeholder"],
-.dark-mode .dash-dropdown [class*="-ValueContainer"],
-body.dark-mode .dash-dropdown [class*="-ValueContainer"],
-.dark-mode [class*="-ValueContainer"],
-body.dark-mode [class*="-ValueContainer"],
-.dark-mode .Select-placeholder,
-.dark-mode .Select-value-label,
-.dark-mode .Select-value,
-body.dark-mode .Select-placeholder,
-body.dark-mode .Select-value-label,
-body.dark-mode .Select-value {
-    color: #FFFFFF !important;
-}
-
-/* Explicitly style dropdown option lists without global border wildcards */
-.dark-mode .dash-dropdown [class*="-menu"],
-body.dark-mode .dash-dropdown [class*="-menu"],
-.dark-mode [class*="-menu"],
-body.dark-mode [class*="-menu"],
-.dark-mode .dash-dropdown .Select-menu-outer,
-body.dark-mode .dash-dropdown .Select-menu-outer,
-.dark-mode .Select-menu-outer,
-body.dark-mode .Select-menu-outer {
-    background-color: #1A1A1A !important;
-    color: #FFFFFF !important;
-    border: 3px solid #FFFFFF !important;
-    box-shadow: 4px 4px 0px #FFFFFF !important;
-}
-
-.dark-mode .dash-dropdown [class*="-option"],
-body.dark-mode .dash-dropdown [class*="-option"],
-.dark-mode [class*="-option"],
-body.dark-mode [class*="-option"],
-.dark-mode .Select-option,
-body.dark-mode .Select-option {
-    color: #FFFFFF !important;
-    background-color: #1A1A1A !important;
-    border: none !important; /* Remove border lines between dropdown items */
-}
-
-.dark-mode .dash-dropdown [class*="-option"]:hover,
-.dark-mode .dash-dropdown [class*="-option"][class*="-option--is-focused"],
-body.dark-mode .dash-dropdown [class*="-option"]:hover,
-body.dark-mode .dash-dropdown [class*="-option"][class*="-option--is-focused"],
-.dark-mode [class*="-option"]:hover,
-.dark-mode [class*="-option"][class*="-option--is-focused"],
-body.dark-mode [class*="-option"]:hover,
-body.dark-mode [class*="-option"][class*="-option--is-focused"],
-.dark-mode .Select-option:hover, 
-.dark-mode .Select-option.is-focused,
-body.dark-mode .Select-option:hover, 
-body.dark-mode .Select-option.is-focused {
-    background-color: #333333 !important;
-    color: #FFFFFF !important;
-}
-
-.dark-mode .dash-dropdown [class*="-input"] > input,
-body.dark-mode .dash-dropdown [class*="-input"] > input,
-.dark-mode [class*="-input"] > input,
-body.dark-mode [class*="-input"] > input,
-.dark-mode .Select-input > input,
-body.dark-mode .Select-input > input {
-    color: #FFFFFF !important;
-}
-
-.dark-mode .dash-dropdown [class*="-input"],
-body.dark-mode .dash-dropdown [class*="-input"],
-.dark-mode [class*="-input"],
-body.dark-mode [class*="-input"],
-.dark-mode .Select-input,
-body.dark-mode .Select-input {
-    background-color: transparent !important;
-}
+/* Dash dropdown controls for dark mode handled via CSS variables */
 
 /* Rc-slider controls for dark mode */
 .dark-mode .slider-container *,
