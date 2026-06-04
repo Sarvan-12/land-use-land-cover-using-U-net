@@ -25,6 +25,18 @@ It also includes an **interactive dashboard** that shows how land use has change
 
 ---
 
+## 🌍 Study Area & Monitoring Regions
+
+This project focuses on satellite imagery analysis in **Alaska, USA**, tracking land cover variations across three distinct study areas:
+*   **Matanuska-Susitna Valley** (`region_1`)
+*   **Tanana River Basin** (`region_2`)
+*   **Kenai Peninsula** (`region_3`)
+
+> [!NOTE]
+> All area statistics, metrics, and chart displays throughout the dashboard are calculated and reported in **square meters (in sq m)**.
+
+---
+
 ## <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;display:inline"><path d="M14.7 6.3l3 3M10.2 4.6l2.3 2.3-8.5 8.5c-.8.8-.8 2 0 2.8l2.1 2.1c.8.8 2 .8 2.8 0l8.5-8.5 2.3 2.3c.4.4 1 .4 1.4 0l.7-.7c.4-.4.4-1 0-1.4l-8-8c-.4-.4-1-.4-1.4 0l-.7.7c-.4.4-.4 1 0 1.4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> What This Project Does
 
 - **Satellite Image Segmentation**: Uses a U-Net model (TensorFlow/Keras) to classify land types.
