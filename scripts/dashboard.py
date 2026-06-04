@@ -183,8 +183,8 @@ app.layout = html.Div(id='main-container', className='main-container', children=
         html.Div([
             html.Div([
                 # Desktop header — always visible
-                html.H3("LAND TYPE AREA STATISTICS (in sq m)",
-                        className='stats-desktop-header'),
+                html.Div("LAND TYPE AREA STATISTICS (in sq m)",
+                        className='brutalist-card-header stats-desktop-header'),
                 # Mobile toggle button — hidden on desktop via CSS
                 html.Button(
                     "LAND TYPE AREA STATISTICS (in sq m) \u25bc",
@@ -192,8 +192,10 @@ app.layout = html.Div(id='main-container', className='main-container', children=
                     className='stats-toggle-btn',
                     n_clicks=0
                 ),
-                html.Div(id='stats-grid', className='stats-grid stats-grid-hidden')
-            ], className="stats-container"),
+                html.Div([
+                    html.Div(id='stats-grid', className='stats-grid stats-grid-hidden')
+                ], className="brutalist-card-content")
+            ], className="brutalist-card")
         ])
     ], className="main-grid"),
 

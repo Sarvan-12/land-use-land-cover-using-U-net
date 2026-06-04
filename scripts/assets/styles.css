@@ -203,24 +203,17 @@ label {
 }
 
 /* Stats cells grid */
-.stats-container {
-    background-color: #FFFFFF;
-    border: 3px solid #000000;
-    box-shadow: 6px 6px 0px #000000;
-    margin-bottom: 30px;
-    padding: 20px;
-}
-
 .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
 }
 
 /* Desktop stats section header — always visible */
 .stats-desktop-header {
     display: block;
-    margin-bottom: 15px;
     letter-spacing: 0.5px;
 }
 
@@ -230,6 +223,8 @@ label {
 }
 
 .stat-cell {
+    flex: 0 0 calc(25% - 6px);
+    box-sizing: border-box;
     background: #FFFFFF;
     border: 3px solid #000000;
     box-shadow: 4px 4px 0px #000000;
@@ -284,8 +279,14 @@ label {
 
 @media screen and (max-width: 768px) {
     .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .stat-cell {
+        flex: 0 0 calc(50% - 5px); /* 2 columns on mobile */
     }
 
     /* Hide desktop header and show mobile toggle button */
@@ -298,23 +299,24 @@ label {
         width: 100%;
         justify-content: space-between;
         align-items: center;
-        background-color: #FFDD00;
-        border: 3px solid #000000;
-        box-shadow: 3px 3px 0px #000000;
-        padding: 12px 15px;
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 13px;
+        background-color: #FF4D4D;
+        border: none;
+        border-bottom: 3px solid #000000;
+        box-shadow: none;
+        padding: 12px 20px;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 16px;
         font-weight: 700;
         letter-spacing: 0.5px;
         text-transform: uppercase;
         cursor: pointer;
         margin-bottom: 0;
-        color: #000000;
+        color: #FFFFFF;
         box-sizing: border-box;
     }
 
     .stats-toggle-btn:hover {
-        background-color: #FF4D4D;
+        background-color: #FF1A1A;
         color: #FFFFFF;
     }
 
@@ -330,8 +332,8 @@ label {
 }
 
 @media screen and (max-width: 480px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
+    .stat-cell {
+        flex: 0 0 100%; /* 1 column on extra small screens */
     }
 }
 
