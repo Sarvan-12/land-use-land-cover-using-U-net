@@ -213,8 +213,8 @@ label {
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
 }
 
 /* Desktop stats section header — always visible */
@@ -233,7 +233,7 @@ label {
     background: #FFFFFF;
     border: 3px solid #000000;
     box-shadow: 4px 4px 0px #000000;
-    padding: 15px;
+    padding: 8px 4px;
     text-align: center;
     transition: transform 0.1s ease;
 }
@@ -245,17 +245,17 @@ label {
 
 .stat-cell-title {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-size: 9px;
     font-weight: bold;
     text-transform: uppercase;
     color: #333333;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     border-bottom: 2px solid #000000;
-    padding-bottom: 4px;
+    padding-bottom: 2px;
 }
 
 .stat-cell-value {
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 700;
     font-family: 'IBM Plex Mono', monospace;
 }
