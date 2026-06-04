@@ -183,11 +183,11 @@ app.layout = html.Div(id='main-container', className='main-container', children=
         html.Div([
             html.Div([
                 # Desktop header — always visible
-                html.H3("LAND TYPE AREA STATISTICS",
+                html.H3("LAND TYPE AREA STATISTICS (in sq m)",
                         className='stats-desktop-header'),
                 # Mobile toggle button — hidden on desktop via CSS
                 html.Button(
-                    "LAND TYPE AREA STATISTICS \u25bc",
+                    "LAND TYPE AREA STATISTICS (in sq m) \u25bc",
                     id='stats-toggle-btn',
                     className='stats-toggle-btn',
                     n_clicks=0
@@ -269,7 +269,8 @@ def update_dashboard(selected_region, selected_year, theme):
         values='Area',
         title=f"DISTRIBUTION IN {REGION_DISPLAY_NAMES.get(selected_region, selected_region).upper()} ({selected_year})",
         color='Class',
-        color_discrete_map=brutalist_color_map
+        color_discrete_map=brutalist_color_map,
+        labels={'Area': 'Area (in sq m)'}
     )
     pie_chart.update_layout(
         paper_bgcolor=bg_color,
@@ -284,7 +285,7 @@ def update_dashboard(selected_region, selected_year, theme):
         textinfo='percent',
         textposition='inside'
     )
-
+ 
     # Line Chart
     trend_data = df[df['Region'] == selected_region].sort_values(by='Year')
     trend_data_long = trend_data.melt(
@@ -294,14 +295,15 @@ def update_dashboard(selected_region, selected_year, theme):
         value_name='Area'
     )
     trend_data_long['Class'] = trend_data_long['Class'].map(class_mapping)
-
+ 
     trend_graph = px.line(
         trend_data_long,
         x='Year',
         y='Area',
         color='Class',
         title=f"LAND USE TRENDS OVER TIME IN {REGION_DISPLAY_NAMES.get(selected_region, selected_region).upper()}",
-        color_discrete_map=brutalist_color_map
+        color_discrete_map=brutalist_color_map,
+        labels={'Area': 'Area (in sq m)'}
     )
 
     trend_graph.update_layout(
