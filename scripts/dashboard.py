@@ -90,12 +90,27 @@ year_marks = {
 }
 
 # Layout
-app.layout = html.Div([
+app.layout = html.Div(id='main-container', className='main-container', children=[
     # Newspaper Header
     html.Div([
-        html.H1("LAND USE LAND COVER"),
-        html.Div("SATELLITE IMAGE ANALYSIS & CHANGE MONITORING (1994 - 2023)", className="dashboard-subtitle")
-    ], className="dashboard-header"),
+        html.Div([
+            html.H1("LAND USE LAND COVER", style={'margin': '0'}),
+            html.Div("SATELLITE IMAGE ANALYSIS & CHANGE MONITORING (1994 - 2023)", className="dashboard-subtitle")
+        ], style={'flex': '1', 'minWidth': '300px'}),
+        html.Div([
+            html.Label("THEME MODE:", className="theme-label", style={'marginRight': '10px', 'fontWeight': '700'}),
+            dcc.RadioItems(
+                id='theme-toggle',
+                options=[
+                    {'label': 'LIGHT', 'value': 'light'},
+                    {'label': 'DARK', 'value': 'dark'}
+                ],
+                value='light',
+                inline=True,
+                className="theme-radio"
+            )
+        ], className="theme-selector-box")
+    ], className="dashboard-header", style={'display': 'flex', 'justifyContent': 'space-between', 'alignItems': 'center', 'flexWrap': 'wrap', 'gap': '15px'}),
 
     # KPI Highlights Row
     html.Div(id='kpi-row', className="kpi-row"),
@@ -216,13 +231,19 @@ app.layout = html.Div([
      Output('classified-map-img', 'src'),
      Output('kpi-row', 'children')],
     [Input('region-dropdown', 'value'),
-     Input('year-slider', 'value')]
+     Input('year-slider', 'value'),
+     Input('theme-toggle', 'value')]
 )
-def update_dashboard(selected_region, selected_year):
+def update_dashboard(selected_region, selected_year, theme):
     # Snap slider integer to nearest valid year in the dataset
     selected_year = min(years, key=lambda y: abs(y - selected_year))
     # Filter current snapshot
     filtered_data = df_long[(df_long['Region'] == selected_region) & (df_long['Year'] == selected_year)]
+
+    is_dark = theme == 'dark'
+    bg_color = '#1A1A1A' if is_dark else '#FFFFFF'
+    text_color = '#FFFFFF' if is_dark else '#000000'
+    grid_color = '#333333' if is_dark else '#EAEAEA'
 
     # Generate Stats Cells
     stats_cells = []
@@ -248,11 +269,11 @@ def update_dashboard(selected_region, selected_year):
         color_discrete_map=brutalist_color_map
     )
     pie_chart.update_layout(
-        paper_bgcolor='#FFFFFF',
-        plot_bgcolor='#FFFFFF',
+        paper_bgcolor=bg_color,
+        plot_bgcolor=bg_color,
         margin=dict(t=50, b=20, l=10, r=10),
-        font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
-        title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
+        font=dict(family="Space Grotesk, sans-serif", size=12, color=text_color),
+        title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color=text_color)),
         showlegend=False
     )
     pie_chart.update_traces(
@@ -282,28 +303,28 @@ def update_dashboard(selected_region, selected_year):
 
     trend_graph.update_layout(
         showlegend=False,
-        paper_bgcolor='#FFFFFF',
-        plot_bgcolor='#FFFFFF',
+        paper_bgcolor=bg_color,
+        plot_bgcolor=bg_color,
         margin=dict(t=50, b=40, l=20, r=20),
-        font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"),
-        title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color="#000000")),
+        font=dict(family="Space Grotesk, sans-serif", size=12, color=text_color),
+        title=dict(font=dict(family="Space Grotesk, sans-serif", size=16, color=text_color)),
         xaxis=dict(
             showgrid=True,
-            gridcolor='#EAEAEA',
-            linecolor='#000000',
+            gridcolor=grid_color,
+            linecolor=text_color,
             linewidth=2,
             ticks='outside',
-            tickfont=dict(family="IBM Plex Mono, monospace", size=10),
-            title=dict(font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"))
+            tickfont=dict(family="IBM Plex Mono, monospace", size=10, color=text_color),
+            title=dict(font=dict(family="Space Grotesk, sans-serif", size=12, color=text_color))
         ),
         yaxis=dict(
             showgrid=True,
-            gridcolor='#EAEAEA',
-            linecolor='#000000',
+            gridcolor=grid_color,
+            linecolor=text_color,
             linewidth=2,
             ticks='outside',
-            tickfont=dict(family="IBM Plex Mono, monospace", size=10),
-            title=dict(font=dict(family="Space Grotesk, sans-serif", size=12, color="#000000"))
+            tickfont=dict(family="IBM Plex Mono, monospace", size=10, color=text_color),
+            title=dict(font=dict(family="Space Grotesk, sans-serif", size=12, color=text_color))
         )
     )
     trend_graph.update_traces(
@@ -396,6 +417,15 @@ def export_csv(n_clicks, selected_region, selected_year):
     selected_year = min(years, key=lambda y: abs(y - selected_year))
     filtered = df[(df['Region'] == selected_region) & (df['Year'] == selected_year)]
     return dcc.send_data_frame(filtered.to_csv, f"LULC_{selected_region}_{selected_year}.csv", index=False)
+
+@app.callback(
+    Output('main-container', 'className'),
+    Input('theme-toggle', 'value')
+)
+def toggle_theme(theme):
+    if theme == 'dark':
+        return 'main-container dark-mode'
+    return 'main-container'
 
 def create_dashboard():
     """Wrapper function to run the Dash dashboard server."""

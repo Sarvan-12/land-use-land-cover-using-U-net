@@ -533,3 +533,159 @@ label {
     box-shadow: 2px 2px 0px #000000;
 }
 
+/* Dark Mode overrides */
+.dark-mode {
+    background-color: #121212 !important;
+    color: #FFFFFF !important;
+}
+
+.dark-mode .dashboard-header {
+    background-color: #1A1A1A !important;
+    border-bottom: 5px solid #FFFFFF !important;
+}
+
+.dark-mode h1, 
+.dark-mode h2, 
+.dark-mode h3, 
+.dark-mode h4, 
+.dark-mode label,
+.dark-mode .stats-desktop-header {
+    color: #FFFFFF !important;
+}
+
+.dark-mode .brutalist-card {
+    background-color: #1A1A1A !important;
+    border: 3px solid #FFFFFF !important;
+    box-shadow: 4px 4px 0px #FFFFFF !important;
+}
+
+.dark-mode .brutalist-card-header {
+    border-bottom: 3px solid #FFFFFF !important;
+    color: #FFFFFF !important;
+}
+
+.dark-mode .yellow-header {
+    background-color: #FFDD00 !important;
+    color: #000000 !important;
+}
+
+.dark-mode .cyan-header {
+    background-color: #00C2FF !important;
+    color: #000000 !important;
+}
+
+.dark-mode .brutalist-card-content {
+    background-color: #1A1A1A !important;
+    color: #FFFFFF !important;
+}
+
+/* Dash dropdown controls for dark mode */
+.dark-mode .dash-dropdown .Select-control,
+.dark-mode .dash-dropdown .Select-placeholder,
+.dark-mode .dash-dropdown .Select-value-label {
+    background-color: #222222 !important;
+    border-color: #FFFFFF !important;
+    color: #FFFFFF !important;
+}
+
+.dark-mode .dash-dropdown .Select-menu-outer {
+    background-color: #222222 !important;
+    color: #FFFFFF !important;
+    border: 3px solid #FFFFFF !important;
+}
+
+.dark-mode .stat-cell {
+    background-color: #222222 !important;
+    border: 2px solid #FFFFFF !important;
+}
+
+.dark-mode .stat-cell-title {
+    color: #CCCCCC !important;
+}
+
+.dark-mode .stat-cell-value {
+    color: #FFFFFF !important;
+}
+
+.dark-mode .custom-legend-card-grid {
+    background-color: #1A1A1A !important;
+}
+
+.dark-mode .legend-item-text {
+    color: #FFFFFF !important;
+}
+
+.dark-mode .image-comparison-row {
+    background-color: #1A1A1A !important;
+}
+
+.dark-mode .comparison-image {
+    border: 3px solid #FFFFFF !important;
+    box-shadow: 5px 5px 0px #FFFFFF !important;
+}
+
+.dark-mode .kpi-card {
+    background-color: #1A1A1A !important;
+    border: 3px solid #FFFFFF !important;
+    box-shadow: 4px 4px 0px #FFFFFF !important;
+}
+
+.dark-mode .kpi-card:hover {
+    box-shadow: 6px 6px 0px #FFFFFF !important;
+}
+
+.dark-mode .kpi-card-title {
+    color: #AAAAAA !important;
+}
+
+.dark-mode .kpi-card-value {
+    color: #FFFFFF !important;
+}
+
+.dark-mode .brutalist-button {
+    border: 3px solid #FFFFFF !important;
+    box-shadow: 4px 4px 0px #FFFFFF !important;
+    background-color: #00C2FF !important;
+    color: #000000 !important;
+}
+
+.dark-mode .brutalist-button:hover {
+    box-shadow: 6px 6px 0px #FFFFFF !important;
+    background-color: #00B0E6 !important;
+}
+
+.dark-mode .stats-toggle-btn {
+    border: 3px solid #FFFFFF !important;
+    box-shadow: 3px 3px 0px #FFFFFF !important;
+    background-color: #FFDD00 !important;
+    color: #000000 !important;
+}
+
+.dark-mode .theme-label {
+    color: #FFFFFF !important;
+}
+
+/* Style the RadioItems for Brutalist theme mode toggle */
+.theme-selector-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 3px solid #000000;
+    padding: 6px 12px;
+    box-shadow: 3px 3px 0px #000000;
+}
+
+.dark-mode .theme-selector-box {
+    background: #1A1A1A !important;
+    border: 3px solid #FFFFFF !important;
+    box-shadow: 3px 3px 0px #FFFFFF !important;
+}
+
+.theme-radio label {
+    margin-right: 15px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    cursor: pointer;
+}
+
