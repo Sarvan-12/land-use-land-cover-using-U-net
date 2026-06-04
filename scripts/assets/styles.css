@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Main Grid Layout */
 .main-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1.8fr;
+    grid-template-columns: 1.2fr 1.2fr 1.6fr;
     gap: 30px;
     align-items: stretch; /* Make columns equal height */
     margin-bottom: 30px; /* Add spacing below the top row */
@@ -213,7 +213,7 @@ label {
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
 }
 
