@@ -506,3 +506,30 @@ label {
 .green-kpi { border-left: 10px solid #2E7D32; }
 .yellow-kpi { border-left: 10px solid #FFDD00; }
 
+/* Brutalist Button styling */
+.brutalist-button {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #00C2FF; /* Cyan */
+    color: #000000;
+    border: 3px solid #000000;
+    box-shadow: 4px 4px 0px #000000;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    text-align: center;
+}
+
+.brutalist-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000000;
+    background-color: #00B0E6;
+}
+
+.brutalist-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000000;
+}
+

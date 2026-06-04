@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 import dash
 from dash import dcc, html
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 # Path to the CSV file
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -146,7 +146,10 @@ app.layout = html.Div([
                                 tooltip={'always_visible': True, 'placement': 'top'}
                             )
                         ], className="slider-container")
-                    ], className="control-group")
+                    ], className="control-group"),
+                    
+                    html.Button("EXPORT DATA (CSV)", id="btn-export-csv", className="brutalist-button", style={'width': '100%', 'marginTop': '10px'}),
+                    dcc.Download(id="download-dataframe-csv")
                 ], className="brutalist-card-content")
             ], className="brutalist-card")
         ]),
@@ -381,6 +384,18 @@ app.clientside_callback(
      Output('stats-grid', 'className')],
     Input('stats-toggle-btn', 'n_clicks')
 )
+
+@app.callback(
+    Output("download-dataframe-csv", "data"),
+    Input("btn-export-csv", "n_clicks"),
+    [State('region-dropdown', 'value'),
+     State('year-slider', 'value')],
+    prevent_initial_call=True
+)
+def export_csv(n_clicks, selected_region, selected_year):
+    selected_year = min(years, key=lambda y: abs(y - selected_year))
+    filtered = df[(df['Region'] == selected_region) & (df['Year'] == selected_year)]
+    return dcc.send_data_frame(filtered.to_csv, f"LULC_{selected_region}_{selected_year}.csv", index=False)
 
 def create_dashboard():
     """Wrapper function to run the Dash dashboard server."""
