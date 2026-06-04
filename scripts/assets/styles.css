@@ -616,30 +616,41 @@ body.dark-mode .slider-container * {
 }
 
 .dark-mode .rc-slider-rail,
-body.dark-mode .rc-slider-rail {
-    background-color: #222222 !important;
+body.dark-mode .rc-slider-rail,
+.dark-mode .slider-container [class*="rail"],
+body.dark-mode .slider-container [class*="rail"] {
+    background-color: #FFFFFF !important;
     border: 3px solid #FFFFFF !important;
 }
 
 .dark-mode .rc-slider-track,
-body.dark-mode .rc-slider-track {
-    background-color: #FFFFFF !important;
+body.dark-mode .rc-slider-track,
+.dark-mode .slider-container [class*="track"],
+body.dark-mode .slider-container [class*="track"] {
+    background-color: #FFDD00 !important; /* Yellow active track in dark mode */
 }
 
 .dark-mode .rc-slider-handle,
-body.dark-mode .rc-slider-handle {
+body.dark-mode .rc-slider-handle,
+.dark-mode .slider-container [class*="handle"],
+body.dark-mode .slider-container [class*="handle"] {
     border: 3px solid #FFFFFF !important;
     box-shadow: 3px 3px 0px #FFFFFF !important;
+    background-color: #FFDD00 !important;
 }
 
 .dark-mode .rc-slider-dot,
-body.dark-mode .rc-slider-dot {
+body.dark-mode .rc-slider-dot,
+.dark-mode .slider-container [class*="dot"],
+body.dark-mode .slider-container [class*="dot"] {
     background-color: #1A1A1A !important;
     border: 3px solid #FFFFFF !important;
 }
 
 .dark-mode .rc-slider-dot-active,
-body.dark-mode .rc-slider-dot-active {
+body.dark-mode .rc-slider-dot-active,
+.dark-mode .slider-container [class*="dot-active"],
+body.dark-mode .slider-container [class*="dot-active"] {
     border-color: #00C2FF !important;
 }
 
@@ -655,19 +666,40 @@ body.dark-mode .slider-container div {
 }
 
 .dark-mode .rc-slider-mark-text-active,
-body.dark-mode .rc-slider-mark-text-active {
+body.dark-mode .rc-slider-mark-text-active,
+.dark-mode .slider-container [class*="mark-text-active"],
+body.dark-mode .slider-container [class*="mark-text-active"] {
     color: #00C2FF !important;
 }
 
 /* Slider tooltip styling in dark mode */
-.dark-mode .rc-slider-tooltip-inner,
 .dark-mode [class*="tooltip"],
-body.dark-mode .rc-slider-tooltip-inner,
 body.dark-mode [class*="tooltip"] {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.dark-mode .rc-slider-tooltip-inner,
+body.dark-mode .rc-slider-tooltip-inner,
+.dark-mode [class*="tooltip-inner"],
+body.dark-mode [class*="tooltip-inner"] {
     background-color: #1A1A1A !important;
     color: #FFFFFF !important;
     border: 2px solid #FFFFFF !important;
     border-radius: 0px !important;
+}
+
+/* Fix rc-slider tooltip positioning and hidden states in both themes */
+.rc-slider-tooltip,
+[class*="rc-slider-tooltip"],
+[class*="rc-tooltip"] {
+    position: absolute !important;
+    z-index: 1050;
+}
+.rc-slider-tooltip-hidden,
+[class*="tooltip-hidden"] {
+    display: none !important;
 }
 
 .dark-mode .stat-cell {
@@ -801,3 +833,8 @@ body.dark-mode [class*="tooltip"] {
     }
 }
 
+/* Completely hide the default slider input box in both themes */
+.dash-range-slider-input,
+[class*="dash-range-slider-input"] {
+    display: none !important;
+}
