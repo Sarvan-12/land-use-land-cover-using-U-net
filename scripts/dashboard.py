@@ -97,6 +97,9 @@ app.layout = html.Div([
         html.Div("SATELLITE IMAGE ANALYSIS & CHANGE MONITORING (1994 - 2023)", className="dashboard-subtitle")
     ], className="dashboard-header"),
 
+    # KPI Highlights Row
+    html.Div(id='kpi-row', className="kpi-row"),
+
     # Main Dashboard Area: Controls (left) | U-Net Map (middle) | Stats (right)
     html.Div([
         # Left: Controls
@@ -207,7 +210,8 @@ app.layout = html.Div([
      Output('stats-grid', 'children'),
      Output('year-display', 'children'),
      Output('trend-legend-container', 'children'),
-     Output('classified-map-img', 'src')],
+     Output('classified-map-img', 'src'),
+     Output('kpi-row', 'children')],
     [Input('region-dropdown', 'value'),
      Input('year-slider', 'value')]
 )
@@ -323,7 +327,40 @@ def update_dashboard(selected_region, selected_year):
     # Determine dynamic image source asset URL for the classified map
     classified_img_src = app.get_asset_url(f"images/classified/{selected_region}_{selected_region}_{selected_year}.png")
 
-    return pie_chart, trend_graph, stats_cells, str(selected_year), legend_items, classified_img_src
+    # Calculate KPI values
+    water_row = filtered_data[filtered_data['Class'] == 'Water']
+    water_area = water_row['Area'].sum() if not water_row.empty else 0
+
+    dev_classes = ['Developed, Open Space', 'Developed, Low Intensity', 'Developed, Medium Intensity', 'Developed, High Intensity']
+    dev_area = filtered_data[filtered_data['Class'].isin(dev_classes)]['Area'].sum()
+
+    forest_classes = ['Deciduous Forest', 'Evergreen Forest', 'Mixed Forest']
+    forest_area = filtered_data[filtered_data['Class'].isin(forest_classes)]['Area'].sum()
+
+    dominant_row = filtered_data.loc[filtered_data['Area'].idxmax()] if not filtered_data.empty else None
+    dominant_class = dominant_row['Class'] if dominant_row is not None else "N/A"
+    dominant_area = dominant_row['Area'] if dominant_row is not None else 0
+
+    kpi_cards = [
+        html.Div([
+            html.Div("TOTAL WATER COVER", className="kpi-card-title"),
+            html.Div(f"{water_area:,} sq m", className="kpi-card-value")
+        ], className="kpi-card cyan-kpi"),
+        html.Div([
+            html.Div("TOTAL DEVELOPED AREA", className="kpi-card-title"),
+            html.Div(f"{dev_area:,} sq m", className="kpi-card-value")
+        ], className="kpi-card red-kpi"),
+        html.Div([
+            html.Div("TOTAL FOREST COVER", className="kpi-card-title"),
+            html.Div(f"{forest_area:,} sq m", className="kpi-card-value")
+        ], className="kpi-card green-kpi"),
+        html.Div([
+            html.Div(f"DOMINANT: {dominant_class.upper()}", className="kpi-card-title"),
+            html.Div(f"{dominant_area:,} sq m", className="kpi-card-value")
+        ], className="kpi-card yellow-kpi")
+    ]
+
+    return pie_chart, trend_graph, stats_cells, str(selected_year), legend_items, classified_img_src, kpi_cards
 
 # Clientside callback — toggles stats grid visibility on mobile button click
 app.clientside_callback(

@@ -445,3 +445,64 @@ label {
     }
 }
 
+/* KPI Highlights Row */
+.kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 1024px) {
+    .kpi-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .kpi-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+
+.kpi-card {
+    background-color: #FFFFFF;
+    border: 3px solid #000000;
+    box-shadow: 4px 4px 0px #000000;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.1s ease;
+}
+
+.kpi-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000000;
+}
+
+.kpi-card-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #555555;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.kpi-card-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #000000;
+}
+
+/* KPI Variant Colors */
+.cyan-kpi { border-left: 10px solid #00C2FF; }
+.red-kpi { border-left: 10px solid #FF4D4D; }
+.green-kpi { border-left: 10px solid #2E7D32; }
+.yellow-kpi { border-left: 10px solid #FFDD00; }
+
