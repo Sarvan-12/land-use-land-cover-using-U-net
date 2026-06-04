@@ -138,6 +138,7 @@ label {
 }
 
 /* Dropdown Override */
+.dash-dropdown [class*="-control"],
 .Select-control {
     background-color: #FFFFFF !important;
     border: 3px solid #000000 !important;
@@ -146,14 +147,21 @@ label {
     font-weight: 700 !important;
     height: 48px !important;
     box-shadow: 4px 4px 0px #000000 !important;
+    box-sizing: border-box !important;
 }
 
-.Select-value-label, .Select-value, .Select-placeholder {
+.dash-dropdown [class*="-singleValue"],
+.dash-dropdown [class*="-placeholder"],
+.dash-dropdown [class*="-ValueContainer"],
+.Select-value-label, 
+.Select-value, 
+.Select-placeholder {
     color: #000000 !important;
-    line-height: 42px !important;
+    line-height: 38px !important;
     padding-left: 10px !important;
 }
 
+.dash-dropdown [class*="-menu"],
 .Select-menu-outer {
     border: 3px solid #000000 !important;
     border-top: none !important;
@@ -162,14 +170,19 @@ label {
     background-color: #FFFFFF !important;
 }
 
+.dash-dropdown [class*="-option"],
 .Select-option {
     color: #000000 !important;
     background-color: #FFFFFF !important;
     font-weight: bold !important;
     padding: 12px !important;
+    border: none !important;
 }
 
-.Select-option:hover, .Select-option.is-focused {
+.dash-dropdown [class*="-option"]:hover,
+.dash-dropdown [class*="-option"][class*="-option--is-focused"],
+.Select-option:hover, 
+.Select-option.is-focused {
     background-color: #FFDD00 !important;
     color: #000000 !important;
 }
@@ -623,14 +636,8 @@ body.dark-mode {
 }
 
 /* Dash dropdown controls for dark mode */
-.dark-mode .dash-dropdown .Select-control,
-body.dark-mode .dash-dropdown .Select-control {
-    background-color: #1A1A1A !important;
-    border: 3px solid #FFFFFF !important;
-    box-shadow: 4px 4px 0px #FFFFFF !important;
-    color: #FFFFFF !important;
-}
-
+.dark-mode [class*="-control"],
+body.dark-mode [class*="-control"],
 .dark-mode .Select-control,
 body.dark-mode .Select-control {
     background-color: #1A1A1A !important;
@@ -639,6 +646,12 @@ body.dark-mode .Select-control {
     color: #FFFFFF !important;
 }
 
+.dark-mode [class*="-singleValue"],
+body.dark-mode [class*="-singleValue"],
+.dark-mode [class*="-placeholder"],
+body.dark-mode [class*="-placeholder"],
+.dark-mode [class*="-ValueContainer"],
+body.dark-mode [class*="-ValueContainer"],
 .dark-mode .Select-placeholder,
 .dark-mode .Select-value-label,
 .dark-mode .Select-value,
@@ -649,6 +662,8 @@ body.dark-mode .Select-value {
 }
 
 /* Explicitly style dropdown option lists without global border wildcards */
+.dark-mode [class*="-menu"],
+body.dark-mode [class*="-menu"],
 .dark-mode .Select-menu-outer,
 body.dark-mode .Select-menu-outer {
     background-color: #1A1A1A !important;
@@ -657,6 +672,8 @@ body.dark-mode .Select-menu-outer {
     box-shadow: 4px 4px 0px #FFFFFF !important;
 }
 
+.dark-mode [class*="-option"],
+body.dark-mode [class*="-option"],
 .dark-mode .Select-option,
 body.dark-mode .Select-option {
     color: #FFFFFF !important;
@@ -664,6 +681,10 @@ body.dark-mode .Select-option {
     border: none !important; /* Remove border lines between dropdown items */
 }
 
+.dark-mode [class*="-option"]:hover,
+.dark-mode [class*="-option"][class*="-option--is-focused"],
+body.dark-mode [class*="-option"]:hover,
+body.dark-mode [class*="-option"][class*="-option--is-focused"],
 .dark-mode .Select-option:hover, 
 .dark-mode .Select-option.is-focused,
 body.dark-mode .Select-option:hover, 
@@ -672,11 +693,15 @@ body.dark-mode .Select-option.is-focused {
     color: #000000 !important;
 }
 
+.dark-mode [class*="-input"] > input,
+body.dark-mode [class*="-input"] > input,
 .dark-mode .Select-input > input,
 body.dark-mode .Select-input > input {
     color: #FFFFFF !important;
 }
 
+.dark-mode [class*="-input"],
+body.dark-mode [class*="-input"],
 .dark-mode .Select-input,
 body.dark-mode .Select-input {
     background-color: transparent !important;
@@ -826,13 +851,13 @@ body.dark-mode [class*="tooltip"] {
 }
 
 .dark-mode .theme-selector-box {
-    background: #FFFFFF !important;
-    border: 3px solid #000000 !important;
+    background: #1A1A1A !important;
+    border: 3px solid #FFFFFF !important;
     box-shadow: 3px 3px 0px #FFFFFF !important;
 }
 
 .dark-mode .theme-selector-box label {
-    color: #000000 !important;
+    color: #FFFFFF !important;
 }
 
 .theme-radio label {
