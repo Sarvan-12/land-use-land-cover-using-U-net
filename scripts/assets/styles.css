@@ -1,13 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=IBM+Plex+Mono:wght@400;700&display=swap');
 
-:root {
-    --dropdown-bg: #FFFFFF;
-    --dropdown-border: #000000;
-    --dropdown-shadow: #000000;
-    --dropdown-text: #000000;
-    --dropdown-hover-bg: #FFDD00;
-    --dropdown-hover-text: #000000;
-}
+
 
 
 body {
@@ -147,43 +140,49 @@ label {
     letter-spacing: 0.5px;
 }
 
-/* Dropdown Override */
+/* Dropdown Override - Forced light styling in both light/dark mode for maximum visibility */
 .dash-dropdown [class*="-control"],
+[class*="-control"],
 .Select-control {
-    background-color: var(--dropdown-bg) !important;
-    border: 3px solid var(--dropdown-border) !important;
+    background-color: #FFFFFF !important;
+    border: 3px solid #000000 !important;
     border-radius: 0px !important;
-    color: var(--dropdown-text) !important;
+    color: #000000 !important;
     font-weight: 700 !important;
     height: 48px !important;
-    box-shadow: 4px 4px 0px var(--dropdown-shadow) !important;
+    box-shadow: 4px 4px 0px #000000 !important;
     box-sizing: border-box !important;
 }
 
 .dash-dropdown [class*="-singleValue"],
+[class*="-singleValue"],
 .dash-dropdown [class*="-placeholder"],
+[class*="-placeholder"],
 .dash-dropdown [class*="-ValueContainer"],
+[class*="-ValueContainer"],
 .Select-value-label, 
 .Select-value, 
 .Select-placeholder {
-    color: var(--dropdown-text) !important;
+    color: #000000 !important;
     line-height: 38px !important;
     padding-left: 10px !important;
 }
 
 .dash-dropdown [class*="-menu"],
+[class*="-menu"],
 .Select-menu-outer {
-    border: 3px solid var(--dropdown-border) !important;
+    border: 3px solid #000000 !important;
     border-top: none !important;
     border-radius: 0px !important;
-    box-shadow: 4px 4px 0px var(--dropdown-shadow) !important;
-    background-color: var(--dropdown-bg) !important;
+    box-shadow: 4px 4px 0px #000000 !important;
+    background-color: #FFFFFF !important;
 }
 
 .dash-dropdown [class*="-option"],
+[class*="-option"],
 .Select-option {
-    color: var(--dropdown-text) !important;
-    background-color: var(--dropdown-bg) !important;
+    color: #000000 !important;
+    background-color: #FFFFFF !important;
     font-weight: bold !important;
     padding: 12px !important;
     border: none !important;
@@ -191,18 +190,22 @@ label {
 
 .dash-dropdown [class*="-option"]:hover,
 .dash-dropdown [class*="-option"][class*="-option--is-focused"],
+[class*="-option"]:hover,
+[class*="-option"][class*="-option--is-focused"],
 .Select-option:hover, 
 .Select-option.is-focused {
-    background-color: var(--dropdown-hover-bg) !important;
-    color: var(--dropdown-hover-text) !important;
+    background-color: #FFDD00 !important;
+    color: #000000 !important;
 }
 
 .dash-dropdown [class*="-input"] > input,
+[class*="-input"] > input,
 .Select-input > input {
-    color: var(--dropdown-text) !important;
+    color: #000000 !important;
 }
 
 .dash-dropdown [class*="-input"],
+[class*="-input"],
 .Select-input {
     background-color: transparent !important;
 }
