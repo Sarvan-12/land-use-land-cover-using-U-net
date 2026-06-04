@@ -139,64 +139,22 @@ label {
     letter-spacing: 0.5px;
 }
 
-/* Dropdown Override - Fixed white background & black text in both light and dark themes */
+/* Preserve default light-theme styling for dropdown in both light and dark modes */
+.dash-dropdown,
+.dash-dropdown *,
 [class*="-control"],
-.Select-control {
-    background-color: #FFFFFF !important;
-    border: 3px solid #000000 !important;
-    border-radius: 0px !important;
-    color: #000000 !important;
-    font-weight: 700 !important;
-    height: 48px !important;
-    box-shadow: 4px 4px 0px #000000 !important;
-    box-sizing: border-box !important;
-}
-
+[class*="-control"] *,
+[class*="-option"],
 [class*="-singleValue"],
 [class*="-placeholder"],
-[class*="-ValueContainer"],
-.Select-value-label, 
-.Select-value, 
-.Select-placeholder {
+[class*="-input"] input {
     color: #000000 !important;
-    line-height: 38px !important;
-    padding-left: 10px !important;
 }
 
+[class*="-control"],
 [class*="-menu"],
-.Select-menu-outer {
-    border: 3px solid #000000 !important;
-    border-top: none !important;
-    border-radius: 0px !important;
-    box-shadow: 4px 4px 0px #000000 !important;
+[class*="-option"] {
     background-color: #FFFFFF !important;
-}
-
-[class*="-option"],
-.Select-option {
-    color: #000000 !important;
-    background-color: #FFFFFF !important;
-    font-weight: bold !important;
-    padding: 12px !important;
-    border: none !important;
-}
-
-[class*="-option"]:hover,
-[class*="-option"][class*="-option--is-focused"],
-.Select-option:hover, 
-.Select-option.is-focused {
-    background-color: #EEEEEE !important;
-    color: #000000 !important;
-}
-
-[class*="-input"] > input,
-.Select-input > input {
-    color: #000000 !important;
-}
-
-[class*="-input"],
-.Select-input {
-    background-color: transparent !important;
 }
 
 /* Sliders */
