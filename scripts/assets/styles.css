@@ -689,8 +689,8 @@ body.dark-mode [class*="-option"][class*="-option--is-focused"],
 .dark-mode .Select-option.is-focused,
 body.dark-mode .Select-option:hover, 
 body.dark-mode .Select-option.is-focused {
-    background-color: #FFDD00 !important;
-    color: #000000 !important;
+    background-color: #333333 !important;
+    color: #FFFFFF !important;
 }
 
 .dark-mode [class*="-input"] > input,
@@ -851,13 +851,13 @@ body.dark-mode [class*="tooltip"] {
 }
 
 .dark-mode .theme-selector-box {
-    background: #1A1A1A !important;
-    border: 3px solid #FFFFFF !important;
+    background: #FFFFFF !important;
+    border: 3px solid #000000 !important;
     box-shadow: 3px 3px 0px #FFFFFF !important;
 }
 
 .dark-mode .theme-selector-box label {
-    color: #FFFFFF !important;
+    color: #000000 !important;
 }
 
 .theme-radio label {
