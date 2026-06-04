@@ -9,6 +9,13 @@ from dash.dependencies import Input, Output
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CSV_PATH = os.path.join(BASE_DIR, "..", "data", "analysis_results", "area_analysis1.csv")
 
+# User-configurable region display names mapping
+REGION_DISPLAY_NAMES = {
+    'region_1': 'REGION 1',
+    'region_2': 'REGION 2',
+    'region_3': 'REGION 3'
+}
+
 # Create a Dash app
 app = dash.Dash(__name__)
 app.title = "LULC Classification Dashboard"
@@ -101,7 +108,7 @@ app.layout = html.Div([
                         html.Label("SELECT REGION"),
                         dcc.Dropdown(
                             id='region-dropdown',
-                            options=[{'label': region.upper(), 'value': region} for region in df['Region'].unique()],
+                            options=[{'label': REGION_DISPLAY_NAMES.get(region, region.upper()), 'value': region} for region in df['Region'].unique()],
                             value=df['Region'].unique()[0],
                             clearable=False,
                             className="dash-dropdown"
@@ -229,7 +236,7 @@ def update_dashboard(selected_region, selected_year):
         filtered_data,
         names='Class',
         values='Area',
-        title=f"DISTRIBUTION IN {selected_region.upper()} ({selected_year})",
+        title=f"DISTRIBUTION IN {REGION_DISPLAY_NAMES.get(selected_region, selected_region).upper()} ({selected_year})",
         color='Class',
         color_discrete_map=brutalist_color_map
     )
@@ -262,7 +269,7 @@ def update_dashboard(selected_region, selected_year):
         x='Year',
         y='Area',
         color='Class',
-        title=f"LAND USE TRENDS OVER TIME IN {selected_region.upper()}",
+        title=f"LAND USE TRENDS OVER TIME IN {REGION_DISPLAY_NAMES.get(selected_region, selected_region).upper()}",
         color_discrete_map=brutalist_color_map
     )
 
