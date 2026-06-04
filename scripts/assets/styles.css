@@ -867,3 +867,25 @@ body.dark-mode [class*="tooltip"] {
     cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .dashboard-header {
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 4px 4px 0px #000000;
+    }
+    .dark-mode {
+        margin: -10px !important;
+        padding: 10px !important;
+    }
+    .dashboard-header h1 {
+        font-size: 28px !important;
+    }
+    .dashboard-subtitle {
+        font-size: 11px !important;
+        letter-spacing: 1px !important;
+    }
+}
+
