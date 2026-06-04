@@ -598,6 +598,23 @@ body.dark-mode {
 }
 
 /* Dash dropdown controls for dark mode */
+body.dark-mode .dash-dropdown,
+body.dark-mode .dash-dropdown *,
+body.dark-mode .dash-dropdown div,
+body.dark-mode .dash-dropdown span,
+body.dark-mode .dash-dropdown input {
+    background-color: #1A1A1A !important;
+    color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+}
+
+body.dark-mode .dash-dropdown .Select-control,
+body.dark-mode .dash-dropdown [class*="control"] {
+    background-color: #1A1A1A !important;
+    border: 3px solid #FFFFFF !important;
+    box-shadow: 4px 4px 0px #FFFFFF !important;
+}
+
 body.dark-mode .Select-control {
     background-color: #1A1A1A !important;
     border: 3px solid #FFFFFF !important;
@@ -611,7 +628,9 @@ body.dark-mode .Select-value {
     color: #FFFFFF !important;
 }
 
-body.dark-mode .Select-menu-outer {
+body.dark-mode .Select-menu-outer,
+body.dark-mode [class*="menu"],
+body.dark-mode [class*="option"] {
     background-color: #1A1A1A !important;
     color: #FFFFFF !important;
     border: 3px solid #FFFFFF !important;
@@ -624,7 +643,9 @@ body.dark-mode .Select-option {
 }
 
 body.dark-mode .Select-option:hover, 
-body.dark-mode .Select-option.is-focused {
+body.dark-mode .Select-option.is-focused,
+body.dark-mode [class*="option"]:hover,
+body.dark-mode [class*="option"][class*="focused"] {
     background-color: #FFDD00 !important;
     color: #000000 !important;
 }
@@ -638,6 +659,10 @@ body.dark-mode .Select-input {
 }
 
 /* Rc-slider controls for dark mode */
+body.dark-mode .slider-container * {
+    color: #FFFFFF !important;
+}
+
 body.dark-mode .rc-slider-rail {
     background-color: #222222 !important;
     border: 3px solid #FFFFFF !important;
@@ -661,7 +686,10 @@ body.dark-mode .rc-slider-dot-active {
     border-color: #00C2FF !important;
 }
 
-body.dark-mode .rc-slider-mark-text {
+body.dark-mode .rc-slider-mark-text,
+body.dark-mode .rc-slider-mark-text-active,
+body.dark-mode .slider-container span,
+body.dark-mode .slider-container div {
     color: #FFFFFF !important;
 }
 
@@ -670,7 +698,8 @@ body.dark-mode .rc-slider-mark-text-active {
 }
 
 /* Slider tooltip styling in dark mode */
-body.dark-mode .rc-slider-tooltip-inner {
+body.dark-mode .rc-slider-tooltip-inner,
+body.dark-mode [class*="tooltip"] {
     background-color: #1A1A1A !important;
     color: #FFFFFF !important;
     border: 2px solid #FFFFFF !important;
